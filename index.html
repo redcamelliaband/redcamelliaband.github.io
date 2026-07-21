@@ -1,14 +1,668 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="description"
+        content="The official website of Melbourne alternative rock band Red Camellia."
+    >
+
     <title>Red Camellia</title>
+
+    <link rel="icon" href="./favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <meta name="theme-color" content="#111111">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
+
 <body>
 
-    <h1>Red Camellia</h1>
-    <p>Website under construction.</p>
+    <header class="site-header">
+
+        <button
+            class="mobile-menu-button"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <a
+            class="mobile-spotify"
+            href="https://open.spotify.com/artist/2v7xfNq7JK9akvSWFZvmOX?si=IgLIqgGKTV2yJXPdZQ3G4A"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Red Camellia on Spotify"
+        >
+            <i class="fa-brands fa-spotify" aria-hidden="true"></i>
+        </a>
+
+        <!-- Left navigation -->
+
+        <nav class="site-nav" aria-label="Main navigation">
+
+            <a href="#music">MUSIC</a>
+            <a href="#live">LIVE</a>
+            <a href="#video">VIDEO</a>
+            <a href="#about">ABOUT</a>
+
+        </nav>
+
+        <!-- Centre wordmark -->
+
+        <a class="wordmark" href="#hero">
+
+            <img
+                src="images/logos/wordmark-white.png"
+                alt="Red Camellia"
+            >
+
+        </a>
+
+        <!-- Right socials -->
+
+        <div class="socials">
+
+            <a href="https://www.instagram.com/redcamelliaband/" target="_blank" aria-label="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <a href="https://open.spotify.com/artist/2v7xfNq7JK9akvSWFZvmOX?si=IgLIqgGKTV2yJXPdZQ3G4A" target="_blank" aria-label="Spotify">
+                <i class="fa-brands fa-spotify"></i>
+            </a>
+
+            <a href="https://music.apple.com/us/artist/red-camellia/1870162665" target="_blank" aria-label="Apple Music">
+                <i class="fa-brands fa-apple"></i>
+            </a>
+
+            <a href="https://www.tiktok.com/@redcamelliaband" target="_blank" aria-label="TikTok">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+
+        </div>
+
+    </header>
+
+        <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+
+            <nav class="mobile-menu-nav" aria-label="Mobile navigation">
+                <a href="#music">Music</a>
+                <a href="#live">Live</a>
+                <a href="#video">Video</a>
+                <a href="#about">About</a>
+            </nav>
+
+            <div class="mobile-menu-bottom">
+
+                <div class="mobile-menu-divider">
+
+                    <span></span>
+
+                    <img
+                        class="mobile-menu-flower"
+                        src="images/logos/flower_white.png"
+                        alt=""
+                        aria-hidden="true"
+                    >
+
+                    <span></span>
+
+                </div>
+
+                <div class="mobile-menu-social-icons">
+
+                    <a
+                        href="https://www.instagram.com/redcamelliaband/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Instagram"
+                    >
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a
+                        href="https://open.spotify.com/artist/2v7xfNq7JK9akvSWFZvmOX"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Spotify"
+                    >
+                        <i class="fa-brands fa-spotify"></i>
+                    </a>
+
+                    <a
+                        href="https://music.apple.com/us/artist/red-camellia/1870162665"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Apple Music"
+                    >
+                        <i class="fa-brands fa-apple"></i>
+                    </a>
+
+                    <a
+                        href="https://www.tiktok.com/@redcamelliaband"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="TikTok"
+                    >
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+
+                    <a
+                        href="mailto:redcamelliaband@gmail.com"
+                        aria-label="Email"
+                    >
+                        <i class="fa-regular fa-envelope"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    <main>
+
+        <!-- HERO -->
+
+        <section class="hero" id="hero">
+
+            <div class="hero-content">
+
+                <img
+                    class="hero-logo"
+                    src="images/logos/wordmark-white.png"
+                    alt="Red Camellia"
+                >
+
+                <a class="button" href="#music">
+                    Listen now
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- MUSIC -->
+
+        <section class="music" id="music">
+
+            <div class="release-carousel">
+
+                <!-- Trembling -->
+
+                <article class="release-slide release-slide-trembling active">
+
+                    <img
+                        class="release-background trembling-background"
+                        src="images/backgrounds/music-background.png"
+                        alt=""
+                        aria-hidden="true"
+                    >
+
+                    <div class="release-overlay trembling-overlay"></div>
+
+                    <div class="trembling-content">
+
+                        <img
+                            class="trembling-artwork"
+                            src="images/artwork/trembling-cover.jpg"
+                            alt="Trembling single artwork"
+                        >
+
+                        <div class="trembling-info">
+
+                            <p class="trembling-kicker">
+                                Debut Single
+                            </p>
+
+                            <p class="trembling-status">
+                                Out Now
+                            </p>
+
+                            <a
+                                class="button trembling-button"
+                                href="trembling.html"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                Listen
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+                <!-- Overburning -->
+
+                <article class="release-slide release-slide-overburning">
+
+                    <img
+                        class="release-background"
+                        src="images/artwork/overburning-cover.jpg"
+                        alt="Overburning artwork"
+                    >
+
+                    <div class="release-overlay"></div>
+
+                    <div class="release-content">
+
+                        <p class="release-label">
+                            New Single
+                        </p>
+
+                        <h2>Overburning</h2>
+
+                        <p class="release-date">
+                            Friday 22 August 2026
+                        </p>
+
+                        <p class="release-platforms">
+                            Available on all major streaming platforms
+                        </p>
+
+                    </div>
+
+                </article>
+
+                <!-- Carousel controls -->
+
+                <button
+                    class="carousel-arrow carousel-arrow-left"
+                    type="button"
+                    aria-label="Previous release"
+                >
+                    ‹
+                </button>
+
+                <button
+                    class="carousel-arrow carousel-arrow-right"
+                    type="button"
+                    aria-label="Next release"
+                >
+                    ›
+                </button>
+
+                <div class="carousel-dots" aria-label="Choose a release">
+
+                    <button
+                        class="carousel-dot active"
+                        type="button"
+                        aria-label="Show Trembling"
+                    ></button>
+
+                    <button
+                        class="carousel-dot"
+                        type="button"
+                        aria-label="Show Overburning"
+                    ></button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- LIVE -->
+
+        <section class="live" id="live">
+
+            <div class="live-container">
+
+                <div class="show-card">
+
+                    <p class="show-kicker">
+                        Overburning
+                    </p>
+
+                    <p class="show-subtitle">
+                        Single Launch
+                    </p>
+
+                    <h3>
+                        The Last Chance
+                    </h3>
+
+                    <p class="show-date">
+                        Saturday 29 August 2026
+                    </p>
+
+                    <p class="show-location">
+                        Melbourne
+                    </p>
+
+                    <a class="button" href="#">
+                        Tickets
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- VIDEO -->
+
+        <section class="video" id="video">
+
+            <div class="video-container">
+
+                <h2 class="section-heading">VIDEO</h2>
+
+                <!-- Featured video -->
+
+                <div
+                    class="featured-video featured-video-cover"
+                    data-video-id="RBBqYDD9Y9Y"
+                >
+                    <img
+                        class="featured-video-image"
+                        src="images/videos/trembling-official.jpg"
+                        alt="Trembling official music video"
+                    >
+
+                    <button
+                        class="featured-play-button"
+                        type="button"
+                        aria-label="Play Trembling official music video"
+                    >
+                        <i class="fa-solid fa-play" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <!-- Thumbnail videos -->
+
+                <div class="video-grid">
+
+                    <!-- Talking Across the Room -->
+
+                    <button
+                        class="video-thumbnail"
+                        type="button"
+                        data-video-id="ZVPYZ801WhA"
+                        aria-label="Play Talking Across the Room live"
+                    >
+                        <img
+                            src="images/videos/tatr-live.jpg"
+                            alt="Talking Across the Room Live"
+                        >
+
+                        <span class="play-icon" aria-hidden="true">
+                            <svg viewBox="0 0 100 100">
+                                <circle
+                                    cx="50"
+                                    cy="50"
+                                    r="46"
+                                ></circle>
+
+                                <path
+                                    d="M36 27 L73 50 L36 73 Z"
+                                ></path>
+                            </svg>
+                        </span>
+
+                        <span class="video-title">
+                            Talking Across the Room (Live)
+                        </span>
+                    </button>
+
+                    <!-- Trembling -->
+
+                    <button
+                        class="video-thumbnail"
+                        type="button"
+                        data-video-id="rR2mAQOA4Xc"
+                        aria-label="Play Trembling live"
+                    >
+                        <img
+                            src="images/videos/trembling-live.jpg"
+                            alt="Trembling Live"
+                        >
+
+                        <span class="play-icon" aria-hidden="true">
+                            <svg viewBox="0 0 100 100">
+                                <circle
+                                    cx="50"
+                                    cy="50"
+                                    r="46"
+                                ></circle>
+
+                                <path
+                                    d="M36 27 L73 50 L36 73 Z"
+                                ></path>
+                            </svg>
+                        </span>
+
+                        <span class="video-title">
+                            Trembling (Live)
+                        </span>
+                    </button>
+
+                    <!-- Overburning -->
+
+                    <button
+                        class="video-thumbnail"
+                        type="button"
+                        data-video-id="rtRPdUgXkbc"
+                        aria-label="Play Overburning live"
+                    >
+                        <img
+                            src="images/videos/overburning-live.jpg"
+                            alt="Overburning Live"
+                        >
+
+                        <span class="play-icon" aria-hidden="true">
+                            <svg viewBox="0 0 100 100">
+                                <circle
+                                    cx="50"
+                                    cy="50"
+                                    r="46"
+                                ></circle>
+
+                                <path
+                                    d="M36 27 L73 50 L36 73 Z"
+                                ></path>
+                            </svg>
+                        </span>
+
+                        <span class="video-title">
+                            Overburning (Live)
+                        </span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- VIDEO LIGHTBOX -->
+
+        <div
+            class="video-lightbox"
+            id="video-lightbox"
+            aria-hidden="true"
+        >
+
+            <button
+                class="video-lightbox-close"
+                type="button"
+                aria-label="Close video"
+            >
+                ×
+            </button>
+
+            <div class="video-lightbox-content">
+
+                <iframe
+                    id="video-lightbox-player"
+                    src=""
+                    title="Red Camellia video"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
+
+            </div>
+
+        </div>
+
+        <!-- ABOUT -->
+
+        <section class="about" id="about">
+
+            <div class="about-container">
+
+                <div class="about-layout">
+
+                    <img
+                        src="images/about/red-camellia-band.jpg"
+                        alt="Red Camellia"
+                        class="about-image"
+                    >
+
+                    <div class="about-text">
+
+                        <h2 class="about-heading">ABOUT</h2>
+
+                        <p>
+                        Red Camellia are an alternative rock band based in Melbourne, Australia.
+                            
+                        </p>
+                        <p>
+                            Following the release of their debut single,
+                            <em>Trembling</em>, and a sold-out headline show at
+                            Melbourne’s Grace Darling Hotel, Red Camellia return with
+                            their second single, <em>Overburning</em>, out Friday
+                            22 August 2026.
+                        </p>
+
+                        <p class="about-ffo">
+                            <strong>FOR FANS OF</strong><br>
+                            Wunderhorse • The Verve • Fontaines D.C.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+<!-- FOOTER -->
+
+<footer class="site-footer">
+
+    <div class="footer-container">
+
+        <a href="#hero" class="footer-logo-link">
+
+            <img
+                src="images/logos/flower_white.png"
+                alt=""
+                class="footer-flower footer-flower-mobile">
+
+            <img
+                src="images/logos/wordmark-white.png"
+                alt="Red Camellia"
+                class="footer-logo"
+            >
+
+        </a>
+
+<nav class="footer-links">
+
+            <a
+                href="https://open.spotify.com/artist/2v7xfNq7JK9akvSWFZvmOX?si=IgLIqgGKTV2yJXPdZQ3G4A"
+                target="_blank"
+                rel="noopener"
+            >
+                Spotify
+            </a>
+
+            <a
+                href="https://music.apple.com/us/artist/red-camellia/1870162665"
+                target="_blank"
+                rel="noopener"
+            >
+                Apple Music
+            </a>
+
+            <a
+                href="https://www.youtube.com/@redcamelliaband"
+                target="_blank"
+                rel="noopener"
+            >
+                YouTube
+            </a>
+
+            <a
+                href="https://www.instagram.com/redcamelliaband/"
+                target="_blank"
+                rel="noopener"
+            >
+                Instagram
+            </a>
+
+            <a
+                href="https://www.abc.net.au/triplejunearthed/artist/red-camellia/"
+                target="_blank"
+                rel="noopener"
+            >
+                Triple J Unearthed
+            </a>
+
+        </nav>
+
+        <a
+            class="footer-email"
+            href="mailto:redcamelliaband@gmail.com"
+        >
+            redcamelliaband@gmail.com
+        </a>
+
+        <p class="footer-copyright">
+            © 2026 Red Camellia. All rights reserved.
+        </p>
+
+        <img
+            src="images/logos/flower_white.png"
+            alt=""
+            class="footer-flower footer-flower-desktop"
+        >
+
+    </div>
+
+</footer>
+
+    </main>
+
+    <script src="js/script.js"></script>
 
 </body>
+
 </html>
