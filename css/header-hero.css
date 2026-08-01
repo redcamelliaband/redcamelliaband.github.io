@@ -1,0 +1,1194 @@
+
+/* =========================
+   HEADER
+========================= */
+
+.site-header {
+  position: fixed;
+  z-index: 1000;
+
+  top: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: 45px;
+  padding: 0 22px;
+
+  color: #f7f7f5;
+  background: transparent;
+
+  transition:
+    background 0.35s ease,
+    backdrop-filter 0.35s ease;
+}
+
+/* =========================
+   WORDMARK
+========================= */
+
+.wordmark {
+  order: 1;
+  flex: 0 0 auto;
+
+  display: block;
+
+  width: 0;
+  margin-right: 0;
+
+  overflow: hidden;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transform: translateX(-24px);
+
+  transition:
+    width 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    margin-right 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.25s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wordmark img {
+  display: block;
+
+  width: 145px;
+  max-width: none;
+  height: auto;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.site-nav {
+  order: 2;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  margin: 0;
+  padding: 0;
+
+  white-space: nowrap;
+}
+
+.site-nav a {
+  color: #f7f7f5;
+
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  transform: translateY(1px);
+  text-transform: uppercase;
+
+  transition: opacity 0.2s ease;
+}
+.site-nav a:hover {
+  opacity: 0.55;
+}
+
+/* =========================
+   SOCIAL ICONS
+========================= */
+
+.socials {
+  order: 3;
+
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  margin-left: auto;
+}
+
+.socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #f7f7f5;
+  font-size: 19px;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.socials a:hover {
+  opacity: 0.6;
+  transform: translateY(-1px);
+}
+
+/* =========================
+   HEADER AFTER HERO
+========================= */
+
+.site-header.scrolled {
+  background: rgba(17, 17, 17, 0.82);
+
+  backdrop-filter: blur(14px) saturate(135%);
+  -webkit-backdrop-filter: blur(14px) saturate(135%);
+
+  border-bottom: 1px solid rgba(247, 247, 245, 0.08);
+}
+
+.site-header.scrolled .wordmark {
+  width: 145px;
+  margin-right: 20px;
+
+  opacity: 1;
+  pointer-events: auto;
+
+  transform: translateX(0);
+}
+
+/* =========================
+   HEADER MOBILE
+========================= */
+
+@media (max-width: 700px) {
+  .site-header {
+    align-items: center;
+
+    padding: 12px 18px;
+  }
+
+  .site-nav {
+    display: none;
+  }
+
+  .wordmark img {
+    width: 125px;
+  }
+
+  .site-header.scrolled .wordmark {
+    width: 125px;
+    margin-right: 0;
+  }
+
+  .socials {
+    gap: 14px;
+  }
+
+  .socials a {
+    font-size: 17px;
+  }
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  place-items: center;
+
+  min-height: 100vh;
+  overflow: hidden;
+
+  padding: 120px var(--page-margin) 60px;
+
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("../images/photography/hero.jpg");
+
+  background-size: cover;
+  background-position: center 75%;
+  background-repeat: no-repeat;
+
+  color: #f7f7f5;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  text-align: center;
+
+  transform: translateY(70px);
+}
+
+.eyebrow {
+  margin: 0 0 24px;
+  color: #f7f7f5;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+
+  font-size: clamp(64px, 10.5vw, 176px);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.hero-logo {
+  display: block;
+  width: clamp(380px, 48vw, 810px);
+  height: auto;
+  margin: -95px auto 44px;
+}
+
+.hero-description {
+  margin: 28px 0 36px;
+
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+
+@media (max-width: 700px) {
+  .site-header {
+    padding: 22px var(--page-margin);
+  }
+
+  .site-nav {
+    display: none;
+  }
+
+  .hero {
+    background-position: center 55%;
+  }
+
+  h1 {
+    font-size: clamp(52px, 17vw, 92px);
+    white-space: normal;
+  }
+}
+
+@media (min-width: 1100px) and (min-height: 800px) {
+  .hero {
+    background-size: 115%;
+  }
+}
+
+/* ========================================
+   PHASE 1 — MOBILE HEADER + HERO
+======================================== */
+
+@media (max-width: 700px) {
+
+  /* Header */
+
+  .site-header {
+    height: 58px;
+
+    padding:
+      max(10px, env(safe-area-inset-top))
+      18px
+      8px;
+
+    align-items: center;
+  }
+
+  .site-nav {
+    display: none;
+  }
+
+  .socials {
+    gap: 14px;
+    margin-left: auto;
+  }
+
+  .socials a {
+    font-size: 18px;
+  }
+
+  .wordmark img {
+    width: 120px;
+  }
+
+  .site-header.scrolled .wordmark {
+    width: 120px;
+    margin-right: 0;
+  }
+
+
+  /* Hero */
+
+  .hero {
+    min-height: 100dvh;
+
+    padding:
+      calc(70px + env(safe-area-inset-top))
+      18px
+      calc(45px + env(safe-area-inset-bottom));
+
+    background-position: center 48%;
+    background-size: cover;
+  }
+
+  .hero-content {
+    transform: translateY(75px);
+  }
+
+  .hero-logo {
+    width: min(88vw, 340px);
+    max-width: 100%;
+
+    margin: 0 auto 28px;
+  }
+
+  .hero .button {
+    padding: 13px 26px;
+
+    font-size: 10px;
+    letter-spacing: 0.18em;
+  }
+
+}
+
+/* ========================================
+   MOBILE HEADER + MENU
+======================================== */
+
+  .mobile-menu-button,
+  .mobile-menu,
+  .mobile-spotify {
+    display: none;
+  }
+
+  @media (max-width: 700px) {
+
+  /* Hide the standalone Spotify icon while menu is open */
+
+  body.mobile-menu-open .mobile-spotify {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+
+  /* Social icons across top of open menu */
+
+  .mobile-menu-top-socials {
+    position: absolute;
+    z-index: 1001;
+
+    top: 15px;
+    right: 18px;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .mobile-menu-top-socials a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #f7f7f5;
+
+    font-size: 21px;
+
+    opacity: 0;
+
+    transform:
+      translateX(32px)
+      rotate(90deg);
+
+    transition:
+      opacity 0.35s ease,
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Stagger each icon */
+
+  .mobile-menu.active .mobile-menu-top-socials a {
+    opacity: 1;
+    transform: translateX(0) rotate(0);
+  }
+
+  .mobile-menu.active .mobile-menu-top-socials a:nth-child(1) {
+    transition-delay: 0.05s;
+  }
+
+  .mobile-menu.active .mobile-menu-top-socials a:nth-child(2) {
+    transition-delay: 0.11s;
+  }
+
+  .mobile-menu.active .mobile-menu-top-socials a:nth-child(3) {
+    transition-delay: 0.17s;
+  }
+
+  .mobile-menu.active .mobile-menu-top-socials a:nth-child(4) {
+    transition-delay: 0.23s;
+  }
+
+
+  /* Flower inside open menu */
+
+  .mobile-menu-flower {
+    display: block;
+
+    width: 42px;
+    height: auto;
+
+    margin: 0 auto 34px;
+
+    opacity: 0;
+
+    transform:
+      translateY(-10px)
+      scale(0.88);
+
+    transition:
+      opacity 0.4s ease 0.16s,
+      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.16s;
+  }
+
+  .mobile-menu.active .mobile-menu-flower {
+    opacity: 0.72;
+    transform: translateY(0) scale(1);
+  }
+
+  /* =========================
+     HEADER
+  ========================= */
+
+  .site-header {
+    position: fixed;
+    z-index: 1000;
+
+    top: 0;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 64px;
+
+    padding:
+      max(10px, env(safe-area-inset-top))
+      18px
+      8px;
+
+    background: transparent;
+    border-bottom: 1px solid transparent;
+
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+
+    transition:
+      background 0.35s ease,
+      border-color 0.35s ease,
+      backdrop-filter 0.35s ease;
+  }
+
+  /* Dark header appears after large hero wordmark passes */
+
+  .site-header.scrolled {
+    background: rgba(10, 10, 10, 0.88);
+    border-bottom-color: rgba(247, 247, 245, 0.07);
+
+    backdrop-filter: blur(14px) saturate(130%);
+    -webkit-backdrop-filter: blur(14px) saturate(130%);
+  }
+
+  /* Hide desktop navigation */
+
+  .site-nav,
+  .socials {
+    display: none;
+  }
+
+  /* =========================
+     MOBILE WORDMARK
+  ========================= */
+
+  .wordmark {
+    position: absolute;
+
+    left: 50%;
+
+    display: block;
+
+    width: 145px;
+    margin: 0;
+
+    overflow: visible;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateX(-50%) translateY(-5px);
+
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .site-header.scrolled .wordmark {
+    width: 145px;
+    margin: 0;
+
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .wordmark img {
+    display: block;
+
+    width: 145px;
+    height: auto;
+  }
+
+  /* =========================
+     HEADER BUTTONS
+  ========================= */
+
+  .mobile-menu-button,
+  .mobile-spotify {
+    position: absolute;
+    z-index: 1002;
+
+    top: 50%;
+
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 0;
+
+    color: #f7f7f5;
+    background: transparent;
+
+    transform: translateY(-50%);
+  }
+
+/* =========================
+   EDITORIAL MENU ICON
+========================= */
+
+.mobile-menu-button {
+  position: absolute;
+  z-index: 3001;
+
+  top: 50%;
+  left: 18px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+
+  color: #f7f7f5;
+  background: transparent;
+
+  cursor: pointer;
+
+  transform: translateY(-50%);
+}
+
+.mobile-menu-button span {
+  display: block;
+
+  width: 25px;
+  height: 1px;
+  margin: 0;
+
+  border-radius: 999px;
+
+  background: currentColor;
+
+  transform-origin: center;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.3s ease;
+}
+
+/* Turn into close icon */
+
+.mobile-menu-button.active span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.mobile-menu-button.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-button.active span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+  /* =========================
+     SPOTIFY ICON
+  ========================= */
+
+  .mobile-spotify {
+    right: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 23px;
+
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .mobile-spotify:active {
+    opacity: 0.65;
+    transform: translateY(-50%) scale(0.94);
+  }
+
+  /* =========================
+     HERO
+  ========================= */
+
+  .hero-content {
+    transform: translateY(25px);
+  }
+
+  /* =========================
+     FULL-SCREEN MOBILE MENU
+  ========================= */
+
+  .mobile-menu {
+    position: fixed;
+    z-index: 999;
+
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    padding:
+      calc(195px + env(safe-area-inset-top))
+      28px
+      calc(40px + env(safe-area-inset-bottom));
+
+    color: #f7f7f5;
+    background: #111111;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateY(-12px);
+
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    transform: translateY(0);
+  }
+
+  .mobile-menu-nav {
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+  }
+
+  .mobile-menu-nav a {
+    padding: 11px 0;
+
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .mobile-menu-socials {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 14px 24px;
+
+    max-width: 320px;
+    margin: 38px auto 0;
+    padding-top: 26px;
+
+    border-top: 1px solid rgba(247, 247, 245, 0.18);
+  }
+
+  .mobile-menu-socials a {
+    color: rgba(247, 247, 245, 0.72);
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+
+    transition: opacity 0.2s ease;
+  }
+
+  .mobile-menu-socials a:hover {
+    opacity: 0.55;
+  }
+
+  body.mobile-menu-open {
+    overflow: hidden;
+  }
+
+}
+
+.mobile-menu-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========================================
+   MOBILE MENU — KEEP HEADER CONTROLS ON TOP
+======================================== */
+
+@media (max-width: 700px) {
+
+  .site-header {
+    z-index: 3000;
+  }
+
+  .mobile-menu {
+    z-index: 2000;
+  }
+
+  .mobile-menu-button,
+  .mobile-spotify {
+    z-index: 3001;
+  }
+
+  /* Remove the scrolled banner while the menu is open */
+
+  body.mobile-menu-open .site-header,
+  body.mobile-menu-open .site-header.scrolled {
+    background: transparent;
+    border-bottom-color: transparent;
+
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+}
+
+/* ========================================
+   MOBILE MENU — FINAL CLEAN LAYOUT
+======================================== */
+
+@media (max-width: 700px) {
+
+  /* =====================================
+     MENU CONTAINER
+  ===================================== */
+
+  .site-header {
+    z-index: 3000;
+  }
+
+  .mobile-menu {
+    position: fixed;
+    z-index: 2000;
+
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding:
+        calc(20px + env(safe-area-inset-top))
+        24px
+        calc(32px + env(safe-area-inset-bottom));
+
+    background: #111111;
+    color: #f7f7f5;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateY(-10px);
+
+    transition:
+      opacity .3s ease,
+      visibility .3s ease,
+      transform .35s ease;
+  }
+
+  .mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  body.mobile-menu-open {
+    overflow: hidden;
+  }
+
+  /* =====================================
+     HEADER
+  ===================================== */
+
+  body.mobile-menu-open .site-header,
+  body.mobile-menu-open .site-header.scrolled {
+    background: transparent;
+    border-bottom-color: transparent;
+
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .mobile-menu-button,
+  .mobile-spotify {
+    z-index: 3001;
+  }
+
+  body.mobile-menu-open .mobile-spotify {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Hide duplicate logo */
+
+  .mobile-menu-wordmark {
+    display: none !important;
+  }
+
+  /* Use real header logo */
+
+  body.mobile-menu-open .site-header .wordmark,
+  body.mobile-menu-open .site-header.scrolled .wordmark {
+
+    position: absolute;
+
+    left: 50%;
+
+    width: 145px;
+    margin: 0;
+
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateX(-50%);
+  }
+
+  body.mobile-menu-open .site-header .wordmark img,
+  body.mobile-menu-open .site-header.scrolled .wordmark img {
+    width: 145px;
+    height: auto;
+  }
+
+  /* =====================================
+     CLOSE ICON
+  ===================================== */
+
+  .mobile-menu-button.active {
+    align-items: center;
+  }
+
+  .mobile-menu-button.active span:nth-child(1),
+  .mobile-menu-button.active span:nth-child(3) {
+    width: 24px;
+  }
+
+  .mobile-menu-button.active span:nth-child(1) {
+    transform: translateY(4.25px) rotate(45deg);
+  }
+
+  .mobile-menu-button.active span:nth-child(3) {
+    transform: translateY(-4.25px) rotate(-45deg);
+  }
+
+  /* =====================================
+     NAVIGATION
+  ===================================== */
+
+.mobile-menu-nav {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    flex: 1;
+
+    margin: 0;
+    padding: 0;
+
+    text-align: center;
+}
+
+  .mobile-menu-nav a {
+
+    padding: 14px 0;
+
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: .10em;
+    text-transform: uppercase;
+
+    opacity: 0;
+    transform: translateY(14px);
+
+    transition:
+      opacity .35s ease,
+      transform .45s cubic-bezier(.22,1,.36,1);
+  }
+
+  .mobile-menu.active .mobile-menu-nav a {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mobile-menu.active .mobile-menu-nav a:nth-child(1){transition-delay:.06s;}
+  .mobile-menu.active .mobile-menu-nav a:nth-child(2){transition-delay:.11s;}
+  .mobile-menu.active .mobile-menu-nav a:nth-child(3){transition-delay:.16s;}
+  .mobile-menu.active .mobile-menu-nav a:nth-child(4){transition-delay:.21s;}
+
+  /* =====================================
+     FLOWER + SOCIALS
+  ===================================== */
+
+.mobile-menu-bottom {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    max-width: 240px;
+
+    margin-top: 34px;
+    margin-bottom: 60px;
+}
+
+  .mobile-menu-divider {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 170px;
+
+    margin-bottom: 26px;
+
+    opacity: 0;
+    transform: translateY(12px);
+
+    transition:
+      opacity .35s ease,
+      transform .45s cubic-bezier(.22,1,.36,1);
+  }
+
+  .mobile-menu.active .mobile-menu-divider {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: .23s;
+  }
+
+  .mobile-menu-divider span {
+
+    flex: 1;
+    height: 1px;
+
+    background: rgba(247,247,245,.15);
+  }
+
+  .mobile-menu-divider img {
+
+    width: 27px;
+
+    margin: 0 15px;
+
+    opacity: .6;
+  }
+
+  .mobile-menu-social-icons {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 18px;
+  }
+
+  .mobile-menu-social-icons a {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    color: #f7f7f5;
+
+    font-size: 27px;
+
+    opacity: 0;
+
+    transform: translateY(14px);
+
+    transition:
+      opacity .35s ease,
+      transform .45s cubic-bezier(.22,1,.36,1);
+  }
+
+  .mobile-menu.active .mobile-menu-social-icons a {
+
+    opacity: .94;
+
+    transform: translateY(0);
+  }
+
+  .mobile-menu.active .mobile-menu-social-icons a:nth-child(1){transition-delay:.27s;}
+  .mobile-menu.active .mobile-menu-social-icons a:nth-child(2){transition-delay:.32s;}
+  .mobile-menu.active .mobile-menu-social-icons a:nth-child(3){transition-delay:.37s;}
+  .mobile-menu.active .mobile-menu-social-icons a:nth-child(4){transition-delay:.42s;}
+  .mobile-menu.active .mobile-menu-social-icons a:nth-child(5){transition-delay:.47s;}
+
+  .mobile-menu-social-icons a:last-child {
+    font-size: 26px;   /* if the others are 27px */
+}
+
+}
+
+/* ========================================
+   TABLET HEADER — REMOVE BREAKPOINT DEAD ZONE
+======================================== */
+
+@media (min-width: 701px) {
+
+  .site-nav {
+    display: flex !important;
+  }
+
+  .socials {
+    display: flex !important;
+  }
+
+  .mobile-menu-button,
+  .mobile-spotify,
+  .mobile-menu {
+    display: none !important;
+  }
+
+}
+
+/* ========================================
+   IPHONE LANDSCAPE — SAFE FULL-BLEED
+======================================== */
+
+@media (orientation: landscape) and (max-height: 500px) {
+
+  html,
+  body {
+    width: 100%;
+    overflow-x: hidden;
+    background: #111111;
+  }
+
+  /*
+    Keep the normal desktop/tablet header.
+    Only protect it from the iPhone notch.
+  */
+
+  .site-header {
+    padding-left:
+      max(22px, calc(14px + env(safe-area-inset-left)));
+
+    padding-right:
+      max(22px, calc(14px + env(safe-area-inset-right)));
+  }
+
+  /*
+    Fit only the hero content into the short screen.
+    Do not activate mobile layout.
+  */
+
+  .hero {
+    min-height: 100dvh;
+
+    padding-top: 54px;
+    padding-bottom: 18px;
+
+    background-size: cover;
+    background-position: center 52%;
+  }
+
+  .hero-content {
+    transform: translateY(8px);
+  }
+
+  .hero-logo {
+    width: min(50vw, 440px);
+    margin: 0 auto 16px;
+  }
+
+  .hero .button {
+    padding: 10px 22px;
+    font-size: 9px;
+  }
+
+}
+
+/* ========================================
+   MOBILE MENU — FORCE DOWNWARD POSITION
+======================================== */
+
+@media (max-width: 700px) {
+
+  .mobile-menu-nav,
+  .mobile-menu-bottom {
+    position: relative !important;
+    top: 45px !important;
+  }
+
+}

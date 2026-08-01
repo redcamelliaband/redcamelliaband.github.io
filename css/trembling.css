@@ -1,0 +1,283 @@
+/* =========================
+   STREAMING LINK PAGE
+========================= */
+
+.streaming-page {
+  min-height: 100vh;
+
+  color: #f7f7f5;
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.78)
+    ),
+    url("../images/artwork/trembling-coverart-bw.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.streaming-page::before {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+
+  background: inherit;
+  filter: blur(45px);
+  transform: scale(1.12);
+
+  z-index: -1;
+}
+
+.streaming-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-height: 100vh;
+  padding: 20px 20px 40px;
+}
+
+.streaming-wordmark {
+  display: block;
+
+  width: 170px;
+  margin-bottom: 20px;
+}
+
+.streaming-wordmark img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.streaming-card {
+  width: min(100%, 430px);
+
+  text-align: center;
+}
+
+.streaming-artwork {
+    width: clamp(275px, 24vw, 420px);
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.streaming-kicker {
+    margin: 26px 0 8px;
+
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+
+    opacity: .78;
+}
+
+.streaming-status {
+    margin: 0 0 20px;
+
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+
+    opacity: .68;
+}
+
+.streaming-subtitle {
+    margin: 0 0 28px;
+
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+
+    opacity: .82;
+}
+
+.streaming-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 58px;
+  padding: 0 12px 0 20px;
+
+  border: 1px solid rgba(247, 247, 245, 0.28);
+
+  color: #f7f7f5;
+  background: rgba(10, 10, 10, 0.68);
+
+  font-size: 14px;
+  font-weight: 700;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.streaming-link > span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.streaming-link i {
+  width: 22px;
+
+  font-size: 21px;
+  text-align: center;
+}
+
+/* Brand colours */
+
+.streaming-link .fa-spotify {
+    color: #1DB954;
+}
+
+.streaming-link .fa-apple {
+    color: #f7f7f5;
+}
+
+.streaming-link .fa-youtube {
+    color: #FF0000;
+}
+
+.streaming-link .fa-radio {
+    color: #FFD400;
+}
+
+.streaming-action {
+  min-width: 64px;
+  padding: 10px 12px;
+
+  background: rgba(247, 247, 245, 0.14);
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.streaming-link:hover {
+  background: rgba(247, 247, 245, 0.12);
+  border-color: rgba(247, 247, 245, 0.6);
+
+  transform: translateY(-1px);
+}
+
+.streaming-back {
+  display: inline-block;
+
+  margin-top: 32px;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  opacity: 0.7;
+
+  transition: opacity 0.2s ease;
+}
+
+.streaming-back:hover {
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  .streaming-main {
+    padding-top: 28px;
+  }
+
+  .streaming-wordmark {
+    width: 165px;
+    margin-bottom: 30px;
+  }
+
+  .streaming-artwork {
+    width: min(245px, 72vw);
+  }
+}
+
+/* =========================
+   STREAMING SOCIALS
+========================= */
+
+.streaming-socials {
+    margin-top: 38px;
+
+    text-align: center;
+}
+
+.streaming-socials-heading {
+    margin: 0 0 18px;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+
+    opacity: .7;
+}
+
+.streaming-social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+}
+
+.streaming-social-icons a {
+    color: #f7f7f5;
+    font-size: 22px;
+
+    transition:
+        opacity .2s ease,
+        transform .2s ease;
+}
+
+.streaming-social-icons a:hover {
+    opacity: .65;
+    transform: translateY(-2px);
+}
+
+/* =========================
+   LARGE DESKTOP
+========================= */
+
+@media (min-width: 1500px) {
+
+  .streaming-wordmark {
+    width: 205px;
+    margin-bottom: 18px;
+  }
+
+  .streaming-artwork {
+    width: min(320px, 23vw);
+  }
+
+  .streaming-title {
+    position: relative;
+    left: 50%;
+
+    width: max-content;
+    max-width: none;
+
+    margin: 0 0 8px;
+
+    font-size: clamp(72px, 6vw, 110px);
+    text-align: center;
+    white-space: nowrap;
+
+    transform: translateX(-50%);
+  }
+
+  .streaming-link {
+    min-height: 58px;
+    font-size: 16px;
+  }
+
+}

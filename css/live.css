@@ -1,0 +1,159 @@
+/* =========================
+   LIVE
+========================= */
+
+.live {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 100vh;
+  padding: 120px var(--page-margin);
+
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0.42)),
+    url("../images/backgrounds/live-background.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: #f7f7f5;
+}
+
+.live-container {
+  position: relative;
+  z-index: 1;
+
+  width: min(1000px, 90%);
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+.show-card {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.show-kicker {
+  margin: 30px 0 4px;
+
+  color: #f7f7f5;
+
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.show-subtitle {
+  margin: 0 0 34px;
+
+  color: rgba(247, 247, 245, 0.85);
+
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 70px;
+}
+
+.show-card h3 {
+  margin: 0;
+
+  color: #f7f7f5;
+
+  font-size: clamp(64px, 9vw, 125px);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+.show-date {
+  margin: 34px 0 12px;
+
+  color: #f7f7f5;
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.show-location {
+  margin: 0 0 46px;
+
+  color: rgba(247, 247, 245, 0.85);
+
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.live .button {
+  color: #f7f7f5;
+  background: transparent;
+
+  border: 1px solid rgba(247, 247, 245, 0.5);
+  padding: 16px 36px;
+}
+
+.live .button:hover {
+  color: #111111;
+  background: #f7f7f5;
+}
+
+@media (max-width: 700px) {
+
+  .live {
+    min-height: 100svh;
+
+    padding:
+      calc(90px + env(safe-area-inset-top))
+      20px
+      calc(50px + env(safe-area-inset-bottom));
+
+    background-size: cover;
+    background-position: 19% 18%;
+  }
+
+  .show-kicker,
+  .show-subtitle {
+    transform: translateY(50px);
+  }
+
+  .live-container {
+    padding-top: 60px;
+  }
+
+  
+  .live-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    min-height: calc(100svh - 140px);
+  }
+
+  .show-card {
+    padding-bottom: 30px;
+  }
+
+}
+
+/* =========================
+   LIVE — MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+  .live-background {
+    object-position: 10% center;
+  }
+
+}
