@@ -11,10 +11,10 @@
       rgba(0, 0, 0, 0.45),
       rgba(0, 0, 0, 0.78)
     ),
-    url("../images/artwork/trembling-coverart-bw.jpg");
+    url("../images/backgrounds/music-background.jpg");
 
   background-size: cover;
-  background-position: center;
+  background-position: 70% center;
   background-attachment: fixed;
 }
 
