@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Disallow: /overburning.html
+
+Sitemap: https://redcamelliaband.com/sitemap.xml
