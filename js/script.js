@@ -163,7 +163,18 @@ musicLinks.forEach((link) => {
 
     link.addEventListener("click", () => {
 
-        showSlide(0);
+        // Hero "Listen now" should open Trembling.
+        // All other #music links open Overburning.
+
+        if (link.classList.contains("hero-listen-button")) {
+
+            showSlide(1);
+
+        } else {
+
+            showSlide(0);
+
+        }
 
         restartAutoPlay();
 
