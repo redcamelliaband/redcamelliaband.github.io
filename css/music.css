@@ -3,32 +3,49 @@
    ========================================================= */
 
 .music {
-  position: relative;
-  background: #0d0d0d;
-  overflow: hidden;
+    position: relative;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    background: #0d0d0d;
 }
 
 
 /* =========================================================
-   CAROUSEL
+   CAROUSEL VIEWPORT
    ========================================================= */
 
 .release-carousel {
-  position: relative;
+    position: relative;
 
-  width: 100%;
-  height: 100vh;
-  min-height: 100vh;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
 
-  overflow: hidden;
+    overflow: hidden;
 
-  /*
-     Vertical scrolling remains native.
-     Horizontal gestures belong to the carousel.
-  */
-  touch-action: pan-y;
-  user-select: none;
-  -webkit-user-select: none;
+    touch-action: pan-y;
+
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+
+/* =========================================================
+   CAROUSEL TRACK
+   ========================================================= */
+
+.release-track {
+    display: flex;
+
+    width: 100%;
+    height: 100%;
+
+    transform: translate3d(0, 0, 0);
+
+    will-change: transform;
 }
 
 
@@ -37,55 +54,62 @@
    ========================================================= */
 
 .release-slide {
-  position: absolute;
-  top: 0;
+    position: relative;
 
-  width: 100%;
-  height: 100%;
-  min-height: 100vh;
+    flex: 0 0 100%;
 
-  display: grid;
-  place-items: center;
+    width: 100%;
+    min-width: 100%;
+    height: 100%;
 
-  /*
-     Each slide is positioned horizontally by JavaScript.
-     No opacity/visibility fade system anymore.
-  */
-  will-change: transform;
+    overflow: hidden;
+
+    display: grid;
+    place-items: center;
+
+    box-sizing: border-box;
 }
 
-
-/* Prevent images being dragged by the browser */
-
 .release-slide img {
-  -webkit-user-drag: none;
-  user-select: none;
+    -webkit-user-drag: none;
+    user-select: none;
 }
 
 
 /* =========================================================
-   BACKGROUNDS
+   BACKGROUND IMAGE
    ========================================================= */
 
 .release-background {
-  position: absolute;
-  inset: 0;
+    position: absolute;
 
-  width: 100%;
-  height: 100%;
+    inset: 0;
 
-  object-fit: cover;
+    display: block;
 
-  pointer-events: none;
+    width: 100%;
+    height: 100%;
+
+    max-width: none;
+
+    object-fit: cover;
+
+    pointer-events: none;
 }
 
+
+/* =========================================================
+   OVERLAY
+   ========================================================= */
+
 .release-overlay {
-  position: absolute;
-  inset: 0;
+    position: absolute;
 
-  background: rgba(0, 0, 0, 0.42);
+    inset: 0;
 
-  pointer-events: none;
+    background: rgba(0, 0, 0, 0.42);
+
+    pointer-events: none;
 }
 
 
@@ -93,55 +117,90 @@
    OVERBURNING
    ========================================================= */
 
+.release-slide-overburning {
+    padding: 0;
+}
+
 .release-slide-overburning .release-background {
-  object-position: center 15%;
+    object-position: center 15%;
 }
 
 .release-content {
-  position: relative;
-  z-index: 2;
+    position: relative;
+    z-index: 2;
 
-  color: #f7f7f5;
-  text-align: center;
+    color: #f7f7f5;
+
+    text-align: center;
 }
 
 .release-label {
-  margin: 8px 0 18px;
+    margin: 8px 0 18px;
 
-  font-size: 16px;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 800;
+
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
 }
 
 .release-content h2 {
-  margin: 0 0 18px;
+    margin: 0 0 18px;
 
-  font-size: clamp(64px, 10vw, 150px);
-  font-weight: 900;
-  line-height: 0.9;
-  letter-spacing: -0.04em;
-  text-transform: uppercase;
+    font-size: clamp(64px, 10vw, 150px);
+    font-weight: 900;
+
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+
+    text-transform: uppercase;
 }
 
 .release-date {
-  margin: 0;
+    margin: 0;
 
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 1.7;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 800;
+
+    line-height: 1.7;
+    letter-spacing: 0.18em;
+
+    text-transform: uppercase;
 }
 
 .release-platforms {
-  margin: 18px 0 0;
+    margin: 18px 0 0;
 
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.08em;
+    font-size: 12px;
+    font-weight: 400;
 
-  opacity: 0.8;
+    letter-spacing: 0.08em;
+
+    opacity: 0.8;
+}
+
+
+/* =========================================================
+   RELEASE BUTTONS
+   ========================================================= */
+
+.overburning-presave-button,
+.trembling-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 118px;
+    height: 43px;
+
+    padding: 0;
+
+    box-sizing: border-box;
+}
+
+.overburning-presave-button {
+    margin-top: 28px;
 }
 
 
@@ -150,171 +209,188 @@
    ========================================================= */
 
 .release-slide-trembling {
-  padding: 0;
+    padding: 0;
 }
 
 .trembling-background {
-  object-fit: cover;
-  object-position: 70% center;
+    object-fit: cover;
+    object-position: 70% center;
 
-  transform: scale(1.15);
-  transform-origin: center;
+    transform: scale(1.15);
+    transform-origin: center;
 
-  opacity: 0.6;
+    opacity: 0.6;
 
-  filter:
-    saturate(20%)
-    grayscale(100%);
+    filter:
+        saturate(20%)
+        grayscale(100%);
 }
 
 .trembling-overlay {
-  background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.7);
 }
 
 .trembling-content {
-  position: relative;
-  z-index: 2;
+    position: relative;
+    z-index: 2;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
 
-  width: 100%;
-  min-height: 100vh;
+    align-items: center;
+    justify-content: center;
 
-  padding: 70px 40px 55px;
+    width: 100%;
+    height: 100%;
 
-  color: #f7f7f5;
-  text-align: center;
+    box-sizing: border-box;
+
+    padding: 70px 40px 55px;
+
+    color: #f7f7f5;
+
+    text-align: center;
 }
 
 .trembling-artwork {
-  display: block;
+    display: block;
 
-  width: clamp(320px, 32vw, 486px);
-  max-width: 72vh;
+    width: clamp(320px, 32vw, 486px);
+    max-width: 72vh;
 
-  aspect-ratio: 1;
+    aspect-ratio: 1;
 
-  object-fit: cover;
+    object-fit: cover;
 }
 
 .trembling-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
 
-  margin-top: 28px;
+    align-items: center;
+
+    margin-top: 28px;
 }
 
 .trembling-kicker {
-  margin: 0 0 8px;
+    margin: 0 0 8px;
 
-  color: rgba(247, 247, 245, 0.84);
+    color: rgba(247, 247, 245, 0.84);
 
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+
+    line-height: 1;
+    letter-spacing: 0.2em;
+
+    text-transform: uppercase;
 }
 
 .trembling-status {
-  margin: 0 0 24px;
+    margin: 0 0 24px;
 
-  color: rgba(247, 247, 245, 0.72);
+    color: rgba(247, 247, 245, 0.72);
 
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
+    font-size: 13px;
+    font-weight: 400;
 
-.trembling-button {
-  width: auto;
-  height: auto;
+    line-height: 1;
+    letter-spacing: 0.16em;
 
-  padding: 14px 28px;
+    text-transform: uppercase;
 }
 
 
 /* =========================================================
-   CAROUSEL CONTROLS
+   CAROUSEL ARROWS
    ========================================================= */
 
 .carousel-arrow {
-  position: absolute;
-  z-index: 10;
+    position: absolute;
+    z-index: 20;
 
-  top: 47%;
+    top: 50%;
 
-  border: 0;
-  padding: 0;
+    width: auto;
+    height: auto;
 
-  color: #f7f7f5;
-  background: none;
+    margin: 0;
+    padding: 0;
 
-  font-size: 2.5rem;
-  font-weight: 600;
-  line-height: 1;
+    border: 0;
 
-  cursor: pointer;
+    color: #f7f7f5;
+    background: transparent;
 
-  opacity: 0.85;
+    appearance: none;
+    -webkit-appearance: none;
 
-  transform: translateY(-50%);
+    font: inherit;
+    font-size: 2.5rem;
+    font-weight: 600;
 
-  transition: opacity 0.2s ease;
+    line-height: 1;
+
+    cursor: pointer;
+
+    opacity: 0.85;
+
+    transform: translateY(-50%);
+
+    transition: opacity 0.2s ease;
 }
 
 .carousel-arrow:hover {
-  opacity: 1;
+    opacity: 1;
 }
 
 .carousel-arrow-left {
-  left: 10px;
+    left: 10px;
 }
 
 .carousel-arrow-right {
-  right: 10px;
+    right: 10px;
 }
 
 
 /* =========================================================
-   DOTS
+   CAROUSEL DOTS
    ========================================================= */
 
 .carousel-dots {
-  position: absolute;
-  z-index: 10;
+    position: absolute;
+    z-index: 20;
 
-  left: 50%;
-  bottom: 10px;
+    left: 50%;
+    bottom: 10px;
 
-  display: flex;
-  gap: 12px;
+    display: flex;
 
-  transform: translateX(-50%);
+    gap: 12px;
+
+    transform: translateX(-50%);
 }
 
 .carousel-dot {
-  width: 7px;
-  height: 7px;
+    width: 7px;
+    height: 7px;
 
-  padding: 0;
+    margin: 0;
+    padding: 0;
 
-  border: 1px solid #f7f7f5;
-  border-radius: 50%;
+    border: 1px solid #f7f7f5;
+    border-radius: 50%;
 
-  background: transparent;
+    background: transparent;
 
-  cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+
+    cursor: pointer;
 }
 
 .carousel-dot.active {
-  background: #f7f7f5;
+    background: #f7f7f5;
 }
 
 
@@ -324,143 +400,165 @@
 
 @media (max-width: 700px) {
 
-  .release-carousel {
-    height: 100svh;
-    min-height: 100svh;
-  }
+    .release-carousel {
+        height: 100svh;
+        min-height: 100svh;
+    }
 
-  .release-slide {
-    height: 100%;
-    min-height: 100svh;
-  }
+    .release-track {
+        height: 100%;
+    }
 
-
-  /* -------------------------------------------------------
-     TREMBLING
-     ------------------------------------------------------- */
-
-  .trembling-content {
-    min-height: 100svh;
-
-    justify-content: center;
-
-    padding:
-      calc(86px + env(safe-area-inset-top))
-      42px
-      calc(54px + env(safe-area-inset-bottom));
-  }
-
-  .trembling-artwork {
-    width: min(78vw, 320px);
-  }
-
-  .trembling-info {
-    margin-top: 24px;
-  }
-
-  .trembling-kicker {
-    margin-bottom: 8px;
-
-    font-size: 12px;
-  }
-
-  .trembling-status {
-    margin-bottom: 22px;
-
-    font-size: 12px;
-  }
-
-  .trembling-button {
-    padding: 13px 30px;
-  }
+    .release-slide {
+        height: 100%;
+        min-height: 100%;
+    }
 
 
-  /* -------------------------------------------------------
-     OVERBURNING
-     ------------------------------------------------------- */
+    /* =====================================================
+       TREMBLING — MOBILE
+       ===================================================== */
 
-  .release-slide-overburning {
-    padding:
-      calc(84px + env(safe-area-inset-top))
-      24px
-      calc(54px + env(safe-area-inset-bottom));
-  }
+    .trembling-content {
+        height: 100%;
+        min-height: 100%;
 
-  .release-slide-overburning .release-background {
-    object-position: center;
-  }
+        justify-content: center;
 
-  .release-slide-overburning .release-content {
-    width: 100%;
-    max-width: 340px;
+        padding:
+            calc(86px + env(safe-area-inset-top))
+            42px
+            calc(54px + env(safe-area-inset-bottom));
+    }
 
-    margin: 0 auto;
-    padding: 0;
-  }
+    .trembling-artwork {
+        width: min(78vw, 320px);
+    }
 
-  .release-slide-overburning .release-label {
-    margin-bottom: 16px;
+    .trembling-info {
+        margin-top: 24px;
+    }
 
-    font-size: 13px;
-    letter-spacing: 0.20em;
-  }
+    .trembling-kicker {
+        margin-bottom: 8px;
 
-  .release-slide-overburning .release-content h2 {
-    margin: 0 auto 22px;
+        font-size: 12px;
+    }
 
-    font-size: clamp(32px, 10vw, 44px);
-    line-height: 0.82;
-    letter-spacing: -0.045em;
+    .trembling-status {
+        margin-bottom: 22px;
 
-    text-align: center;
-
-    white-space: normal;
-  }
-
-  .release-slide-overburning .release-date {
-    max-width: 290px;
-
-    margin: 0 auto;
-
-    font-size: 11px;
-    line-height: 1.5;
-    letter-spacing: 0.15em;
-  }
-
-  .release-slide-overburning .release-platforms {
-    max-width: 270px;
-
-    margin: 18px auto 0;
-
-    font-size: 11px;
-    line-height: 1.45;
-    letter-spacing: 0.04em;
-  }
+        font-size: 12px;
+    }
 
 
-  /* -------------------------------------------------------
-     CONTROLS
-     ------------------------------------------------------- */
+    /* =====================================================
+       OVERBURNING — MOBILE
+       ===================================================== */
 
-  .carousel-arrow {
-    top: 50%;
+    .release-slide-overburning .release-background {
+        object-position: center center;
+    }
 
-    font-size: 2.25rem;
+    .release-slide-overburning .release-content {
+        width: 100%;
+        max-width: 388px;
 
-    opacity: 0.9;
-  }
+        margin: 0 auto;
 
-  .carousel-arrow-left {
-    left: 10px;
-  }
+        box-sizing: border-box;
 
-  .carousel-arrow-right {
-    right: 10px;
-  }
+        padding:
+            calc(84px + env(safe-area-inset-top))
+            24px
+            calc(54px + env(safe-area-inset-bottom));
+    }
 
-  .carousel-dots {
-    bottom:
-      calc(18px + env(safe-area-inset-bottom));
-  }
+    .release-slide-overburning .release-label {
+        margin-bottom: 16px;
+
+        font-size: 13px;
+
+        letter-spacing: 0.20em;
+    }
+
+    .release-slide-overburning .release-content h2 {
+        margin: 0 auto 22px;
+
+        font-size: clamp(32px, 10vw, 44px);
+
+        line-height: 0.82;
+        letter-spacing: -0.045em;
+
+        text-align: center;
+
+        white-space: normal;
+    }
+
+    .release-slide-overburning .release-date {
+        max-width: 290px;
+
+        margin: 0 auto;
+
+        font-size: 11px;
+
+        line-height: 1.5;
+        letter-spacing: 0.15em;
+    }
+
+    .release-slide-overburning .release-platforms {
+        max-width: 270px;
+
+        margin: 18px auto 0;
+
+        font-size: 11px;
+
+        line-height: 1.45;
+        letter-spacing: 0.04em;
+    }
+
+
+    /* =====================================================
+       RELEASE BUTTONS — MOBILE
+       ===================================================== */
+
+    .overburning-presave-button,
+    .trembling-button {
+        width: 118px;
+        height: 43px;
+
+        padding: 0;
+    }
+
+    .overburning-presave-button {
+        margin-top: 28px;
+    }
+
+
+    /* =====================================================
+       CAROUSEL CONTROLS — MOBILE
+       ===================================================== */
+
+    .carousel-arrow {
+        top: 50%;
+
+        font-size: 2.25rem;
+
+        opacity: 0.9;
+    }
+
+    .carousel-arrow-left {
+        left: 10px;
+    }
+
+    .carousel-arrow-right {
+        right: 10px;
+    }
+
+    .carousel-dots {
+        bottom: calc(
+            18px + env(safe-area-inset-bottom)
+        );
+    }
 
 }

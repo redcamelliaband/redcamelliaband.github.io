@@ -2,6 +2,12 @@
 // MUSIC CAROUSEL
 // =========================================================
 
+const carousel =
+    document.querySelector(".release-carousel");
+
+const track =
+    document.querySelector(".release-track");
+
 const slides = Array.from(
     document.querySelectorAll(".release-slide")
 );
@@ -16,51 +22,45 @@ const previousButton =
 const nextButton =
     document.querySelector(".carousel-arrow-right");
 
-const carousel =
-    document.querySelector(".release-carousel");
-
 const musicLinks =
     document.querySelectorAll('a[href="#music"]');
-
 
 let currentSlide = 0;
 let autoPlay = null;
 
 let isDragging = false;
-let dragDirectionLocked = false;
-let isHorizontalDrag = false;
+let directionLocked = false;
+let horizontalDrag = false;
 
-let dragStartX = 0;
-let dragStartY = 0;
-let dragCurrentX = 0;
+let startX = 0;
+let startY = 0;
+let currentX = 0;
 
 const swipeThreshold = 0.18;
 
 
 // =========================================================
-// POSITION SLIDES
+// TRACK POSITION
 // =========================================================
 
-function positionSlides(offset = 0, animate = true) {
+function setTrackPosition(
+    pixelOffset = 0,
+    animate = true
+) {
 
-    if (!carousel || !slides.length) return;
+    if (!carousel || !track) return;
 
-    const carouselWidth = carousel.clientWidth;
+    const width = carousel.clientWidth;
 
-    slides.forEach((slide, index) => {
+    const position =
+        -(currentSlide * width) + pixelOffset;
 
-        const slideOffset =
-            (index - currentSlide) * carouselWidth + offset;
+    track.style.transition = animate
+        ? "transform 0.38s cubic-bezier(0.22, 1, 0.36, 1)"
+        : "none";
 
-        slide.style.transition = animate
-            ? "transform 0.38s cubic-bezier(0.22, 1, 0.36, 1)"
-            : "none";
-
-        slide.style.transform =
-            `translate3d(${slideOffset}px, 0, 0)`;
-
-    });
-
+    track.style.transform =
+        `translate3d(${position}px, 0, 0)`;
 }
 
 
@@ -90,14 +90,12 @@ function showSlide(index, animate = true) {
 
     if (!slides.length) return;
 
-    currentSlide = Math.max(
-        0,
-        Math.min(index, slides.length - 1)
-    );
+    currentSlide =
+        (index + slides.length) % slides.length;
 
-    positionSlides(0, animate);
+    setTrackPosition(0, animate);
+
     updateDots();
-
 }
 
 
@@ -107,22 +105,13 @@ function showSlide(index, animate = true) {
 
 function previousSlide() {
 
-    if (currentSlide > 0) {
-        showSlide(currentSlide - 1);
-    } else {
-        showSlide(currentSlide);
-    }
+    showSlide(currentSlide - 1);
 
 }
 
-
 function nextSlide() {
 
-    if (currentSlide < slides.length - 1) {
-        showSlide(currentSlide + 1);
-    } else {
-        showSlide(currentSlide);
-    }
+    showSlide(currentSlide + 1);
 
 }
 
@@ -136,12 +125,12 @@ function stopAutoPlay() {
     if (autoPlay !== null) {
 
         clearInterval(autoPlay);
+
         autoPlay = null;
 
     }
 
 }
-
 
 function startAutoPlay() {
 
@@ -151,19 +140,16 @@ function startAutoPlay() {
 
     autoPlay = setInterval(() => {
 
-        const nextIndex =
-            (currentSlide + 1) % slides.length;
-
-        showSlide(nextIndex);
+        nextSlide();
 
     }, 8000);
 
 }
 
-
 function restartAutoPlay() {
 
     stopAutoPlay();
+
     startAutoPlay();
 
 }
@@ -177,55 +163,7 @@ musicLinks.forEach((link) => {
 
     link.addEventListener("click", () => {
 
-        stopAutoPlay();
-
         showSlide(0);
-
-        startAutoPlay();
-
-    });
-
-});
-
-
-// =========================================================
-// ARROWS
-// =========================================================
-
-previousButton?.addEventListener("click", (event) => {
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    previousSlide();
-    restartAutoPlay();
-
-});
-
-
-nextButton?.addEventListener("click", (event) => {
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    nextSlide();
-    restartAutoPlay();
-
-});
-
-
-// =========================================================
-// DOTS
-// =========================================================
-
-dots.forEach((dot, index) => {
-
-    dot.addEventListener("click", (event) => {
-
-        event.preventDefault();
-        event.stopPropagation();
-
-        showSlide(index);
 
         restartAutoPlay();
 
@@ -235,77 +173,132 @@ dots.forEach((dot, index) => {
 
 
 // =========================================================
-// DESKTOP CLICK NAVIGATION
+// CAROUSEL ARROWS
 // =========================================================
 
-carousel?.addEventListener("click", (event) => {
+previousButton?.addEventListener(
+    "click",
+    (event) => {
 
-    /*
-       Don't treat a touch-generated click as carousel
-       navigation immediately after dragging.
-    */
-
-    if (isDragging) return;
-
-    if (event.target.closest("a, button")) return;
-
-    /*
-       Only use click-half navigation on devices with a
-       mouse/trackpad rather than touch-first devices.
-    */
-
-    const bounds =
-        carousel.getBoundingClientRect();
-
-    const clickX =
-        event.clientX - bounds.left;
-
-    if (clickX < bounds.width / 2) {
+        event.preventDefault();
+        event.stopPropagation();
 
         previousSlide();
 
-    } else {
+        restartAutoPlay();
+
+    }
+);
+
+nextButton?.addEventListener(
+    "click",
+    (event) => {
+
+        event.preventDefault();
+        event.stopPropagation();
 
         nextSlide();
 
-    }
+        restartAutoPlay();
 
-    restartAutoPlay();
+    }
+);
+
+
+// =========================================================
+// CAROUSEL DOTS
+// =========================================================
+
+dots.forEach((dot, index) => {
+
+    dot.addEventListener(
+        "click",
+        (event) => {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            showSlide(index);
+
+            restartAutoPlay();
+
+        }
+    );
 
 });
 
 
 // =========================================================
-// TOUCH DRAG
+// DESKTOP / TAP-SIDE NAVIGATION
+// =========================================================
+
+carousel?.addEventListener(
+    "click",
+    (event) => {
+
+        if (isDragging) return;
+
+        if (event.target.closest("a, button")) {
+            return;
+        }
+
+        const bounds =
+            carousel.getBoundingClientRect();
+
+        const clickX =
+            event.clientX - bounds.left;
+
+        if (clickX < bounds.width / 2) {
+
+            previousSlide();
+
+        } else {
+
+            nextSlide();
+
+        }
+
+        restartAutoPlay();
+
+    }
+);
+
+
+// =========================================================
+// TOUCH START
 // =========================================================
 
 carousel?.addEventListener(
     "touchstart",
     (event) => {
 
-        if (event.touches.length !== 1) return;
+        if (event.touches.length !== 1) {
+            return;
+        }
 
         stopAutoPlay();
 
         isDragging = true;
-        dragDirectionLocked = false;
-        isHorizontalDrag = false;
+        directionLocked = false;
+        horizontalDrag = false;
 
-        dragStartX =
+        startX =
             event.touches[0].clientX;
 
-        dragStartY =
+        startY =
             event.touches[0].clientY;
 
-        dragCurrentX = dragStartX;
+        currentX = startX;
 
     },
-    { passive: true }
+    {
+        passive: true
+    }
 );
 
 
 // =========================================================
-// TOUCH MOVE — FOLLOW FINGER
+// TOUCH MOVE
 // =========================================================
 
 carousel?.addEventListener(
@@ -314,22 +307,20 @@ carousel?.addEventListener(
 
         if (!isDragging) return;
 
-        const touch = event.touches[0];
+        const touch =
+            event.touches[0];
 
         const deltaX =
-            touch.clientX - dragStartX;
+            touch.clientX - startX;
 
         const deltaY =
-            touch.clientY - dragStartY;
+            touch.clientY - startY;
 
 
-        /*
-           Wait for enough movement before deciding whether
-           the user means horizontal carousel navigation or
-           normal vertical page scrolling.
-        */
+        // Work out whether the user is swiping
+        // horizontally or scrolling vertically.
 
-        if (!dragDirectionLocked) {
+        if (!directionLocked) {
 
             if (
                 Math.abs(deltaX) < 8 &&
@@ -338,132 +329,98 @@ carousel?.addEventListener(
                 return;
             }
 
-            dragDirectionLocked = true;
+            directionLocked = true;
 
-            isHorizontalDrag =
-                Math.abs(deltaX) > Math.abs(deltaY);
+            horizontalDrag =
+                Math.abs(deltaX) >
+                Math.abs(deltaY);
 
         }
 
 
-        /*
-           Vertical gesture:
-           leave everything to the browser.
-        */
+        // Allow normal vertical page scrolling.
 
-        if (!isHorizontalDrag) return;
-
-
-        /*
-           Horizontal gesture:
-           stop Safari/page movement and physically move
-           the carousel with the finger.
-        */
+        if (!horizontalDrag) {
+            return;
+        }
 
         event.preventDefault();
 
-        dragCurrentX = touch.clientX;
+        currentX = touch.clientX;
 
-        let dragOffset =
-            dragCurrentX - dragStartX;
-
-
-        /*
-           Resistance at the beginning/end.
-
-           This gives the carousel a small elastic feel
-           instead of allowing an empty screen to appear.
-        */
-
-        const draggingPastFirst =
-            currentSlide === 0 &&
-            dragOffset > 0;
-
-        const draggingPastLast =
-            currentSlide === slides.length - 1 &&
-            dragOffset < 0;
-
-        if (
-            draggingPastFirst ||
-            draggingPastLast
-        ) {
-
-            dragOffset *= 0.22;
-
-        }
+        const dragOffset =
+            currentX - startX;
 
 
-        /*
-           No animation while the finger is down.
-           The slides directly follow the finger.
-        */
+        // Move the entire track with the finger.
 
-        positionSlides(dragOffset, false);
+        setTrackPosition(
+            dragOffset,
+            false
+        );
 
     },
-    { passive: false }
+    {
+        passive: false
+    }
 );
 
 
 // =========================================================
-// FINISH TOUCH
+// FINISH TOUCH DRAG
 // =========================================================
 
 function finishCarouselDrag() {
 
     if (!isDragging) return;
 
-    const dragDistance =
-        dragCurrentX - dragStartX;
+    const distance =
+        currentX - startX;
 
-    const carouselWidth =
-        carousel?.clientWidth || window.innerWidth;
+    const width =
+        carousel?.clientWidth ||
+        window.innerWidth;
 
-    const requiredDistance =
-        carouselWidth * swipeThreshold;
+    const threshold =
+        width * swipeThreshold;
 
 
-    /*
-       Only change slide if this was actually a
-       horizontal gesture.
-    */
+    if (horizontalDrag) {
 
-    if (isHorizontalDrag) {
+        if (distance < -threshold) {
 
-        if (
-            dragDistance < -requiredDistance &&
-            currentSlide < slides.length - 1
-        ) {
+            currentSlide =
+                (currentSlide + 1) %
+                slides.length;
 
-            currentSlide += 1;
+        } else if (distance > threshold) {
 
-        } else if (
-            dragDistance > requiredDistance &&
-            currentSlide > 0
-        ) {
-
-            currentSlide -= 1;
+            currentSlide =
+                (
+                    currentSlide -
+                    1 +
+                    slides.length
+                ) % slides.length;
 
         }
 
     }
 
 
-    /*
-       Snap everything into its final position.
-    */
+    // Snap onto the exact slide position.
 
-    positionSlides(0, true);
+    setTrackPosition(0, true);
+
     updateDots();
 
 
     isDragging = false;
-    dragDirectionLocked = false;
-    isHorizontalDrag = false;
+    directionLocked = false;
+    horizontalDrag = false;
 
-    dragStartX = 0;
-    dragStartY = 0;
-    dragCurrentX = 0;
+    startX = 0;
+    startY = 0;
+    currentX = 0;
 
     restartAutoPlay();
 
@@ -473,14 +430,17 @@ function finishCarouselDrag() {
 carousel?.addEventListener(
     "touchend",
     finishCarouselDrag,
-    { passive: true }
+    {
+        passive: true
+    }
 );
-
 
 carousel?.addEventListener(
     "touchcancel",
     finishCarouselDrag,
-    { passive: true }
+    {
+        passive: true
+    }
 );
 
 
@@ -503,11 +463,38 @@ carousel?.addEventListener(
 // WINDOW RESIZE
 // =========================================================
 
-window.addEventListener("resize", () => {
+window.addEventListener(
+    "resize",
+    () => {
 
-    positionSlides(0, false);
+        setTrackPosition(
+            0,
+            false
+        );
 
-});
+    }
+);
+
+
+// =========================================================
+// ORIENTATION CHANGE
+// =========================================================
+
+window.addEventListener(
+    "orientationchange",
+    () => {
+
+        setTimeout(() => {
+
+            setTrackPosition(
+                0,
+                false
+            );
+
+        }, 100);
+
+    }
+);
 
 
 // =========================================================
@@ -515,6 +502,7 @@ window.addEventListener("resize", () => {
 // =========================================================
 
 showSlide(0, false);
+
 startAutoPlay();
 
 
@@ -699,13 +687,17 @@ function updateHeader() {
 window.addEventListener(
     "scroll",
     updateHeader,
-    { passive: true }
+    {
+        passive: true
+    }
 );
+
 
 window.addEventListener(
     "resize",
     updateHeader
 );
+
 
 updateHeader();
 
@@ -863,7 +855,7 @@ mobileMenuLinks.forEach((link) => {
 
 
 // =========================================================
-// ESC KEY
+// ESC KEY — MOBILE MENU
 // =========================================================
 
 document.addEventListener(
