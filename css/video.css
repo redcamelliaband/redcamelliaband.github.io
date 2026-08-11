@@ -87,10 +87,8 @@
    ========================================================= */
 
 .video-container {
-    width: clamp(911px, 68.9vw, 1386px);
-
-    max-width: 100%;
-
+    width: 1200px;
+    max-width: none;
     margin: 0 auto;
 }
 
