@@ -83,14 +83,18 @@
 
 /* =========================================================
    VIDEO CONTAINER — DESKTOP
-   20% LARGER
+
+   Responsive so it scales between laptop and large monitor.
    ========================================================= */
 
 .video-container {
-    width: 1200px;
-    max-width: none;
+    width: clamp(900px, 68vw, 1350px);
+
+    max-width: calc(100vw - 80px);
+
     margin: 0 auto;
 }
+
 
 /* =========================================================
    FEATURED VIDEO
@@ -220,7 +224,11 @@
 
     gap: 24px;
 
-    margin: 0 0 18px;
+    margin:
+        0
+        0
+        18px;
+
     padding: 0;
 }
 
@@ -296,6 +304,8 @@
     .video-container {
         width: 100%;
         max-width: 900px;
+
+        margin: 0 auto;
     }
 
 
