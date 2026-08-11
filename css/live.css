@@ -1,159 +1,613 @@
-/* =========================
+/* =========================================================
    LIVE
-========================= */
+   ========================================================= */
 
 .live {
-  position: relative;
+    position: relative;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: grid;
+    grid-template-columns: 50% 50%;
 
-  min-height: 100vh;
-  padding: 120px var(--page-margin);
+    width: 100%;
+    min-height: 100vh;
 
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0.42)),
-    url("../images/backgrounds/live-background.jpg");
+    overflow: hidden;
 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  color: #f7f7f5;
+    color: #f7f7f5;
+    background: #111111;
 }
 
-.live-container {
-  position: relative;
-  z-index: 1;
 
-  width: min(1000px, 90%);
-  margin: 0 auto;
+/* =========================================================
+   LEFT SIDE — SHARP PORTRAIT
+   ========================================================= */
 
-  text-align: center;
+.live-image {
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+
+    background: #111111;
 }
 
-.show-card {
-  max-width: 900px;
-  margin: 0 auto;
+
+.live-image img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center 38%;
+
+    filter:
+        grayscale(65%)
+        sepia(22%)
+        saturate(75%)
+        contrast(1.05)
+        brightness(0.72);
 }
 
-.show-kicker {
-  margin: 30px 0 4px;
 
-  color: #f7f7f5;
+/* =========================================================
+   RIGHT SIDE — DETAILS PANEL
+   ========================================================= */
 
-  font-size: 26px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
+.live-details {
+    position: relative;
 
-.show-subtitle {
-  margin: 0 0 34px;
-
-  color: rgba(247, 247, 245, 0.85);
-
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  margin-bottom: 70px;
-}
-
-.show-card h3 {
-  margin: 0;
-
-  color: #f7f7f5;
-
-  font-size: clamp(64px, 9vw, 125px);
-  font-weight: 900;
-  line-height: 0.9;
-  letter-spacing: -0.05em;
-  text-transform: uppercase;
-}
-
-.show-date {
-  margin: 34px 0 12px;
-
-  color: #f7f7f5;
-
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-.show-location {
-  margin: 0 0 46px;
-
-  color: rgba(247, 247, 245, 0.85);
-
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-.live .button {
-  color: #f7f7f5;
-  background: transparent;
-
-  border: 1px solid rgba(247, 247, 245, 0.5);
-  padding: 16px 36px;
-}
-
-.live .button:hover {
-  color: #111111;
-  background: #f7f7f5;
-}
-
-@media (max-width: 700px) {
-
-  .live {
-    min-height: 100svh;
-
-    padding:
-      calc(90px + env(safe-area-inset-top))
-      20px
-      calc(50px + env(safe-area-inset-bottom));
-
-    background-size: cover;
-    background-position: 19% 18%;
-  }
-
-  .show-kicker,
-  .show-subtitle {
-    transform: translateY(50px);
-  }
-
-  .live-container {
-    padding-top: 60px;
-  }
-
-  
-  .live-container {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
 
-    min-height: calc(100svh - 140px);
-  }
+    width: 100%;
+    min-width: 0;
+    height: 100vh;
 
-  .show-card {
-    padding-bottom: 30px;
-  }
+    padding: 80px 7vw;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    background: #111111;
+}
+
+
+/* =========================================================
+   MIRRORED / BLURRED BACKGROUND
+   ========================================================= */
+
+.live-details::before {
+    content: "";
+
+    position: absolute;
+    z-index: 0;
+
+    inset: -60px;
+
+    background-image:
+        url("../images/backgrounds/live-portrait.jpg");
+
+    background-size: cover;
+    background-position: center 38%;
+    background-repeat: no-repeat;
+
+    filter:
+        blur(22px)
+        grayscale(65%)
+        sepia(22%)
+        saturate(75%)
+        contrast(1.05)
+        brightness(0.72);
+
+    transform:
+        scaleX(-1)
+        scale(1.10);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   SUBTLE DARK OVERLAY
+   ========================================================= */
+
+.live-details::after {
+    content: "";
+
+    position: absolute;
+    z-index: 1;
+
+    inset: 0;
+
+    background: rgba(8, 8, 8, 0.18);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   SHOW CARD
+   ========================================================= */
+
+.show-card {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    width: 100%;
+    max-width: 620px;
+
+    margin: 0;
+
+    text-align: left;
+
+    transform: translateY(-20px);
+}
+
+
+/* =========================================================
+   RELEASE DETAILS
+   ========================================================= */
+
+.show-release {
+    margin: 0 0 32px;
+}
+
+
+.show-kicker {
+    margin: 0 0 8px;
+
+    color: #f7f7f5;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    line-height: 1;
+
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+
+.show-subtitle {
+    margin: 0;
+
+    color: rgba(247, 247, 245, 0.68);
+
+    font-size: 12px;
+    font-weight: 400;
+
+    line-height: 1;
+
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   SHOW MAIN
+   ========================================================= */
+
+.show-main {
+    width: 100%;
+}
+
+
+/* =========================================================
+   THE LAST CHANCE
+   ========================================================= */
+
+.show-card h3 {
+    margin: 0;
+
+    color: #f7f7f5;
+
+    font-size: clamp(40px, 4vw, 68px);
+    font-weight: 900;
+
+    line-height: 0.92;
+    letter-spacing: -0.05em;
+
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   ROCK & ROLL BAR
+   ========================================================= */
+
+.show-venue-subtitle {
+    margin: 16px 0 0;
+
+    color: rgba(247, 247, 245, 0.78);
+
+    font-size: clamp(18px, 1.6vw, 26px);
+    font-weight: 500;
+
+    line-height: 1;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+.show-date {
+    margin: 44px 0 10px;
+
+    color: #f7f7f5;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   LOCATION
+   ========================================================= */
+
+.show-location {
+    margin: 0 0 42px;
+
+    color: rgba(247, 247, 245, 0.68);
+
+    font-size: 12px;
+    font-weight: 400;
+
+    line-height: 1.2;
+
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   TICKET BUTTON
+   ========================================================= */
+
+.live .button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 118px;
+    height: 43px;
+
+    padding: 0 28px;
+
+    box-sizing: border-box;
+
+    color: #f7f7f5;
+    background: transparent;
+
+    border: 1px solid rgba(247, 247, 245, 0.58);
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.live .button:hover {
+    color: #111111;
+    background: #f7f7f5;
+
+    border-color: #f7f7f5;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) and (min-width: 701px) {
+
+    .live {
+        grid-template-columns: 46% 54%;
+    }
+
+
+    .live-details {
+        padding:
+            80px
+            5vw;
+    }
+
+
+    .show-card {
+        transform: translateY(-15px);
+    }
+
+
+    .show-release {
+        margin-bottom: 32px;
+    }
+
+
+    .show-card h3 {
+        font-size: clamp(38px, 4.8vw, 58px);
+    }
+
+
+    .show-venue-subtitle {
+        font-size: clamp(16px, 2vw, 21px);
+    }
+
+
+    .show-date {
+        margin-top: 36px;
+    }
+
+
+    .show-location {
+        margin-bottom: 36px;
+    }
 
 }
 
-/* =========================
-   LIVE — MOBILE
-========================= */
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 700px) {
 
-  .live-background {
-    object-position: 10% center;
-  }
+    .live {
+        position: relative;
+
+        display: block;
+
+        width: 100%;
+        height: 100svh;
+        min-height: 100svh;
+
+        overflow: hidden;
+
+        background: #111111;
+    }
+
+
+    /* =====================================================
+       FULL-SCREEN PORTRAIT
+       ===================================================== */
+
+    .live-image {
+        position: absolute;
+        z-index: 0;
+
+        inset: 0;
+
+        width: 100%;
+        height: 100%;
+    }
+
+
+    .live-image img {
+        display: block;
+
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+        object-position: center 32%;
+
+        filter:
+            grayscale(65%)
+            sepia(22%)
+            saturate(75%)
+            contrast(1.05)
+            brightness(0.72);
+    }
+
+
+    /* =====================================================
+       MOBILE GRADIENT
+       ===================================================== */
+
+    .live::after {
+        content: "";
+
+        position: absolute;
+        z-index: 1;
+
+        inset: 0;
+
+        background:
+            linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.02) 0%,
+                rgba(0, 0, 0, 0.05) 30%,
+                rgba(0, 0, 0, 0.20) 54%,
+                rgba(0, 0, 0, 0.76) 100%
+            );
+
+        pointer-events: none;
+    }
+
+
+    /* =====================================================
+       REMOVE DESKTOP MIRRORED PANEL
+       ===================================================== */
+
+    .live-details::before,
+    .live-details::after {
+        display: none;
+    }
+
+
+    /* =====================================================
+       DETAILS OVER IMAGE
+       ===================================================== */
+
+    .live-details {
+        position: relative;
+        z-index: 2;
+
+        display: flex;
+
+        align-items: flex-end;
+        justify-content: flex-start;
+
+        width: 100%;
+        height: 100%;
+
+        padding:
+            calc(82px + env(safe-area-inset-top))
+            24px
+            calc(42px + env(safe-area-inset-bottom));
+
+        box-sizing: border-box;
+
+        overflow: visible;
+
+        background: transparent;
+    }
+
+
+    /* =====================================================
+       COMPLETE TEXT STACK — MOBILE
+       ===================================================== */
+
+    .show-card {
+        position: relative;
+        z-index: 2;
+
+        width: 100%;
+        max-width: none;
+
+        align-items: flex-start;
+
+        text-align: left;
+
+        /*
+           MOBILE POSITION CONTROL
+
+           Negative = move everything UP.
+           Positive = move everything DOWN.
+        */
+
+        transform: translateY(-35px);
+    }
+
+
+    /* =====================================================
+       RELEASE — MOBILE
+       ===================================================== */
+
+    .show-release {
+        margin: 0 0 20px;
+
+        transform: none;
+    }
+
+
+    .show-kicker {
+        margin-bottom: 6px;
+
+        font-size: 13px;
+
+        letter-spacing: 0.16em;
+    }
+
+
+    .show-subtitle {
+        font-size: 10px;
+
+        letter-spacing: 0.20em;
+    }
+
+
+    /* =====================================================
+       THE LAST CHANCE — MOBILE
+       ===================================================== */
+
+    .show-card h3 {
+        margin: 0;
+
+        font-size: clamp(37px, 10.5vw, 48px);
+
+        line-height: 0.92;
+        letter-spacing: -0.045em;
+
+        white-space: nowrap;
+    }
+
+
+    /* =====================================================
+       ROCK & ROLL BAR — MOBILE
+       ===================================================== */
+
+    .show-venue-subtitle {
+        margin-top: 11px;
+
+        font-size: 15px;
+        font-weight: 500;
+
+        line-height: 1;
+
+        letter-spacing: 0.07em;
+
+        white-space: nowrap;
+    }
+
+
+    /* =====================================================
+       DATE — MOBILE
+       ===================================================== */
+
+    .show-date {
+        margin: 30px 0 8px;
+
+        font-size: 11px;
+
+        letter-spacing: 0.13em;
+    }
+
+
+    /* =====================================================
+       LOCATION — MOBILE
+       ===================================================== */
+
+    .show-location {
+        margin: 0 0 30px;
+
+        font-size: 10px;
+
+        letter-spacing: 0.16em;
+    }
+
+
+    /* =====================================================
+       BUTTON — MOBILE
+       ===================================================== */
+
+    .live .button {
+        min-width: 112px;
+        height: 42px;
+
+        padding: 0 25px;
+    }
 
 }

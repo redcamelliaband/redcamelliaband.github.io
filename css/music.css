@@ -79,18 +79,18 @@
 
 
 /* =========================================================
-   BACKGROUND IMAGE
+   BACKGROUNDS
    ========================================================= */
 
 .release-background {
     position: absolute;
 
-    inset: 0;
+    inset: -40px;
 
     display: block;
 
-    width: 100%;
-    height: 100%;
+    width: calc(100% + 80px);
+    height: calc(100% + 80px);
 
     max-width: none;
 
@@ -101,125 +101,29 @@
 
 
 /* =========================================================
-   OVERLAY
+   OVERBURNING BACKGROUND
    ========================================================= */
 
-.release-overlay {
-    position: absolute;
+.overburning-background {
+    object-position: center;
 
-    inset: 0;
+    transform: scale(1.12);
 
-    background: rgba(0, 0, 0, 0.42);
-
-    pointer-events: none;
+    filter:
+        blur(22px)
+        brightness(0.55)
+        saturate(75%);
 }
 
 
 /* =========================================================
-   OVERBURNING
+   TREMBLING BACKGROUND
    ========================================================= */
-
-.release-slide-overburning {
-    padding: 0;
-}
-
-.release-slide-overburning .release-background {
-    object-position: center 15%;
-}
-
-.release-content {
-    position: relative;
-    z-index: 2;
-
-    color: #f7f7f5;
-
-    text-align: center;
-}
-
-.release-label {
-    margin: 8px 0 18px;
-
-    font-size: 16px;
-    font-weight: 800;
-
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-}
-
-.release-content h2 {
-    margin: 0 0 18px;
-
-    font-size: clamp(64px, 10vw, 150px);
-    font-weight: 900;
-
-    line-height: 0.9;
-    letter-spacing: -0.04em;
-
-    text-transform: uppercase;
-}
-
-.release-date {
-    margin: 0;
-
-    font-size: 16px;
-    font-weight: 800;
-
-    line-height: 1.7;
-    letter-spacing: 0.18em;
-
-    text-transform: uppercase;
-}
-
-.release-platforms {
-    margin: 18px 0 0;
-
-    font-size: 12px;
-    font-weight: 400;
-
-    letter-spacing: 0.08em;
-
-    opacity: 0.8;
-}
-
-
-/* =========================================================
-   RELEASE BUTTONS
-   ========================================================= */
-
-.overburning-presave-button,
-.trembling-button {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 118px;
-    height: 43px;
-
-    padding: 0;
-
-    box-sizing: border-box;
-}
-
-.overburning-presave-button {
-    margin-top: 28px;
-}
-
-
-/* =========================================================
-   TREMBLING
-   ========================================================= */
-
-.release-slide-trembling {
-    padding: 0;
-}
 
 .trembling-background {
-    object-fit: cover;
     object-position: 70% center;
 
     transform: scale(1.15);
-    transform-origin: center;
 
     opacity: 0.6;
 
@@ -228,10 +132,33 @@
         grayscale(100%);
 }
 
-.trembling-overlay {
-    background: rgba(0, 0, 0, 0.7);
+
+/* =========================================================
+   OVERLAYS
+   ========================================================= */
+
+.release-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
 }
 
+.overburning-overlay {
+    background: rgba(0, 0, 0, 0.30);
+}
+
+.trembling-overlay {
+    background: rgba(0, 0, 0, 0.70);
+}
+
+
+/* =========================================================
+   RELEASE CONTENT
+   ========================================================= */
+
+.overburning-content,
 .trembling-content {
     position: relative;
     z-index: 2;
@@ -254,6 +181,12 @@
     text-align: center;
 }
 
+
+/* =========================================================
+   ARTWORK
+   ========================================================= */
+
+.overburning-artwork,
 .trembling-artwork {
     display: block;
 
@@ -265,6 +198,12 @@
     object-fit: cover;
 }
 
+
+/* =========================================================
+   RELEASE INFO
+   ========================================================= */
+
+.overburning-info,
 .trembling-info {
     display: flex;
     flex-direction: column;
@@ -274,32 +213,25 @@
     margin-top: 28px;
 }
 
-.trembling-kicker {
-    margin: 0 0 8px;
 
-    color: rgba(247, 247, 245, 0.84);
+/* =========================================================
+   RELEASE BUTTONS
+   ========================================================= */
 
-    font-size: 13px;
-    font-weight: 700;
+.overburning-presave-button,
+.trembling-button {
+    display: inline-flex;
 
-    line-height: 1;
-    letter-spacing: 0.2em;
+    align-items: center;
+    justify-content: center;
 
-    text-transform: uppercase;
-}
+    width: 118px;
+    height: 43px;
 
-.trembling-status {
-    margin: 0 0 24px;
+    margin: 0;
+    padding: 0;
 
-    color: rgba(247, 247, 245, 0.72);
-
-    font-size: 13px;
-    font-weight: 400;
-
-    line-height: 1;
-    letter-spacing: 0.16em;
-
-    text-transform: uppercase;
+    box-sizing: border-box;
 }
 
 
@@ -424,9 +356,10 @@
 
 
     /* =====================================================
-       TREMBLING — MOBILE
+       CONTENT — MOBILE
        ===================================================== */
 
+    .overburning-content,
     .trembling-content {
         height: 100%;
         min-height: 100%;
@@ -439,95 +372,29 @@
             calc(54px + env(safe-area-inset-bottom));
     }
 
+
+    /* =====================================================
+       ARTWORK — MOBILE
+       ===================================================== */
+
+    .overburning-artwork,
     .trembling-artwork {
         width: min(78vw, 320px);
     }
 
+
+    /* =====================================================
+       RELEASE INFO — MOBILE
+       ===================================================== */
+
+    .overburning-info,
     .trembling-info {
         margin-top: 24px;
     }
 
-    .trembling-kicker {
-        margin-bottom: 8px;
-
-        font-size: 12px;
-    }
-
-    .trembling-status {
-        margin-bottom: 22px;
-
-        font-size: 12px;
-    }
-
 
     /* =====================================================
-       OVERBURNING — MOBILE
-       ===================================================== */
-
-    .release-slide-overburning .release-background {
-        object-position: center center;
-    }
-
-    .release-slide-overburning .release-content {
-        width: 100%;
-        max-width: 388px;
-
-        margin: 0 auto;
-
-        box-sizing: border-box;
-
-        padding:
-            calc(84px + env(safe-area-inset-top))
-            24px
-            calc(54px + env(safe-area-inset-bottom));
-    }
-
-    .release-slide-overburning .release-label {
-        margin-bottom: 16px;
-
-        font-size: 13px;
-
-        letter-spacing: 0.20em;
-    }
-
-    .release-slide-overburning .release-content h2 {
-        margin: 0 auto 22px;
-
-        font-size: clamp(32px, 10vw, 44px);
-
-        line-height: 0.82;
-        letter-spacing: -0.045em;
-
-        text-align: center;
-
-        white-space: normal;
-    }
-
-    .release-slide-overburning .release-date {
-        max-width: 290px;
-
-        margin: 0 auto;
-
-        font-size: 11px;
-
-        line-height: 1.5;
-        letter-spacing: 0.15em;
-    }
-
-    .release-slide-overburning .release-platforms {
-        max-width: 270px;
-
-        margin: 18px auto 0;
-
-        font-size: 11px;
-
-        line-height: 1.45;
-        letter-spacing: 0.04em;
-    }
-
-
-    /* =====================================================
-       RELEASE BUTTONS — MOBILE
+       BUTTONS — MOBILE
        ===================================================== */
 
     .overburning-presave-button,
@@ -538,8 +405,20 @@
         padding: 0;
     }
 
-    .overburning-presave-button {
-        margin-top: 28px;
+
+    /* =====================================================
+       OVERBURNING BACKGROUND — MOBILE
+       ===================================================== */
+
+    .overburning-background {
+        object-position: center;
+
+        transform: scale(1.18);
+
+        filter:
+            blur(20px)
+            brightness(0.52)
+            saturate(75%);
     }
 
 
@@ -564,9 +443,32 @@
     }
 
     .carousel-dots {
-        bottom: calc(
-            18px + env(safe-area-inset-bottom)
-        );
+        bottom:
+            calc(
+                18px + env(safe-area-inset-bottom)
+            );
+    }
+
+}
+
+.overburning-kicker {
+    margin: 0 0 20px;
+
+    color: rgba(247, 247, 245, 0.84);
+
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+}
+
+@media (max-width: 700px) {
+
+    .overburning-kicker {
+        margin-bottom: 20px;
+        font-size: 12px;
     }
 
 }

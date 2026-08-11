@@ -25,6 +25,7 @@ const nextButton =
 const musicLinks =
     document.querySelectorAll('a[href="#music"]');
 
+
 let currentSlide = 0;
 let autoPlay = null;
 
@@ -48,19 +49,26 @@ function setTrackPosition(
     animate = true
 ) {
 
-    if (!carousel || !track) return;
+    if (!carousel || !track) {
+        return;
+    }
 
-    const width = carousel.clientWidth;
+    const width =
+        carousel.clientWidth;
 
     const position =
         -(currentSlide * width) + pixelOffset;
 
-    track.style.transition = animate
-        ? "transform 0.38s cubic-bezier(0.22, 1, 0.36, 1)"
-        : "none";
+
+    track.style.transition =
+        animate
+            ? "transform 0.38s cubic-bezier(0.22, 1, 0.36, 1)"
+            : "none";
+
 
     track.style.transform =
         `translate3d(${position}px, 0, 0)`;
+
 }
 
 
@@ -86,32 +94,50 @@ function updateDots() {
 // SHOW SLIDE
 // =========================================================
 
-function showSlide(index, animate = true) {
+function showSlide(
+    index,
+    animate = true
+) {
 
-    if (!slides.length) return;
+    if (!slides.length) {
+        return;
+    }
+
 
     currentSlide =
-        (index + slides.length) % slides.length;
+        (index + slides.length) %
+        slides.length;
 
-    setTrackPosition(0, animate);
+
+    setTrackPosition(
+        0,
+        animate
+    );
+
 
     updateDots();
+
 }
 
 
 // =========================================================
-// NAVIGATION
+// PREVIOUS / NEXT
 // =========================================================
 
 function previousSlide() {
 
-    showSlide(currentSlide - 1);
+    showSlide(
+        currentSlide - 1
+    );
 
 }
 
+
 function nextSlide() {
 
-    showSlide(currentSlide + 1);
+    showSlide(
+        currentSlide + 1
+    );
 
 }
 
@@ -122,29 +148,39 @@ function nextSlide() {
 
 function stopAutoPlay() {
 
-    if (autoPlay !== null) {
-
-        clearInterval(autoPlay);
-
-        autoPlay = null;
-
+    if (autoPlay === null) {
+        return;
     }
 
+
+    clearInterval(autoPlay);
+
+    autoPlay = null;
+
 }
+
 
 function startAutoPlay() {
 
     stopAutoPlay();
 
-    if (slides.length <= 1) return;
 
-    autoPlay = setInterval(() => {
+    if (slides.length <= 1) {
+        return;
+    }
 
-        nextSlide();
 
-    }, 8000);
+    autoPlay = setInterval(
+        () => {
+
+            nextSlide();
+
+        },
+        8000
+    );
 
 }
+
 
 function restartAutoPlay() {
 
@@ -156,29 +192,26 @@ function restartAutoPlay() {
 
 
 // =========================================================
-// MUSIC NAVIGATION LINKS
+// MUSIC NAVIGATION LINK
 // =========================================================
 
 musicLinks.forEach((link) => {
 
-    link.addEventListener("click", () => {
+    link.addEventListener(
+        "click",
+        () => {
 
-        // Hero "Listen now" should open Trembling.
-        // All other #music links open Overburning.
-
-        if (link.classList.contains("hero-listen-button")) {
-
-            showSlide(1);
-
-        } else {
+            /*
+               MUSIC always returns to
+               the first slide: Overburning.
+            */
 
             showSlide(0);
 
+            restartAutoPlay();
+
         }
-
-        restartAutoPlay();
-
-    });
+    );
 
 });
 
@@ -194,6 +227,7 @@ previousButton?.addEventListener(
         event.preventDefault();
         event.stopPropagation();
 
+
         previousSlide();
 
         restartAutoPlay();
@@ -201,12 +235,14 @@ previousButton?.addEventListener(
     }
 );
 
+
 nextButton?.addEventListener(
     "click",
     (event) => {
 
         event.preventDefault();
         event.stopPropagation();
+
 
         nextSlide();
 
@@ -229,6 +265,7 @@ dots.forEach((dot, index) => {
             event.preventDefault();
             event.stopPropagation();
 
+
             showSlide(index);
 
             restartAutoPlay();
@@ -247,19 +284,38 @@ carousel?.addEventListener(
     "click",
     (event) => {
 
-        if (isDragging) return;
-
-        if (event.target.closest("a, button")) {
+        if (isDragging) {
             return;
         }
+
+
+        /*
+           Don't change slides when the user
+           clicks a button or link.
+        */
+
+        if (
+            event.target.closest(
+                "a, button"
+            )
+        ) {
+            return;
+        }
+
 
         const bounds =
             carousel.getBoundingClientRect();
 
-        const clickX =
-            event.clientX - bounds.left;
 
-        if (clickX < bounds.width / 2) {
+        const clickX =
+            event.clientX -
+            bounds.left;
+
+
+        if (
+            clickX <
+            bounds.width / 2
+        ) {
 
             previousSlide();
 
@@ -268,6 +324,7 @@ carousel?.addEventListener(
             nextSlide();
 
         }
+
 
         restartAutoPlay();
 
@@ -283,15 +340,22 @@ carousel?.addEventListener(
     "touchstart",
     (event) => {
 
-        if (event.touches.length !== 1) {
+        if (
+            event.touches.length !== 1
+        ) {
             return;
         }
 
+
         stopAutoPlay();
 
+
         isDragging = true;
+
         directionLocked = false;
+
         horizontalDrag = false;
+
 
         startX =
             event.touches[0].clientX;
@@ -299,7 +363,8 @@ carousel?.addEventListener(
         startY =
             event.touches[0].clientY;
 
-        currentX = startX;
+        currentX =
+            startX;
 
     },
     {
@@ -316,20 +381,29 @@ carousel?.addEventListener(
     "touchmove",
     (event) => {
 
-        if (!isDragging) return;
+        if (!isDragging) {
+            return;
+        }
+
 
         const touch =
             event.touches[0];
 
+
         const deltaX =
-            touch.clientX - startX;
+            touch.clientX -
+            startX;
 
         const deltaY =
-            touch.clientY - startY;
+            touch.clientY -
+            startY;
 
 
-        // Work out whether the user is swiping
-        // horizontally or scrolling vertically.
+        /*
+           First determine whether the user
+           intends to swipe sideways or
+           scroll vertically.
+        */
 
         if (!directionLocked) {
 
@@ -340,7 +414,9 @@ carousel?.addEventListener(
                 return;
             }
 
+
             directionLocked = true;
+
 
             horizontalDrag =
                 Math.abs(deltaX) >
@@ -349,21 +425,27 @@ carousel?.addEventListener(
         }
 
 
-        // Allow normal vertical page scrolling.
+        /*
+           If the movement is vertical,
+           leave normal page scrolling alone.
+        */
 
         if (!horizontalDrag) {
             return;
         }
 
+
         event.preventDefault();
 
-        currentX = touch.clientX;
+
+        currentX =
+            touch.clientX;
+
 
         const dragOffset =
-            currentX - startX;
+            currentX -
+            startX;
 
-
-        // Move the entire track with the finger.
 
         setTrackPosition(
             dragOffset,
@@ -383,55 +465,82 @@ carousel?.addEventListener(
 
 function finishCarouselDrag() {
 
-    if (!isDragging) return;
+    if (!isDragging) {
+        return;
+    }
+
 
     const distance =
-        currentX - startX;
+        currentX -
+        startX;
+
 
     const width =
         carousel?.clientWidth ||
         window.innerWidth;
 
+
     const threshold =
-        width * swipeThreshold;
+        width *
+        swipeThreshold;
 
 
     if (horizontalDrag) {
 
-        if (distance < -threshold) {
+        if (
+            distance <
+            -threshold
+        ) {
 
             currentSlide =
-                (currentSlide + 1) %
+                (
+                    currentSlide + 1
+                ) %
                 slides.length;
 
-        } else if (distance > threshold) {
+        } else if (
+            distance >
+            threshold
+        ) {
 
             currentSlide =
                 (
                     currentSlide -
                     1 +
                     slides.length
-                ) % slides.length;
+                ) %
+                slides.length;
 
         }
 
     }
 
 
-    // Snap onto the exact slide position.
+    /*
+       Snap back onto the exact
+       carousel position.
+    */
 
-    setTrackPosition(0, true);
+    setTrackPosition(
+        0,
+        true
+    );
+
 
     updateDots();
 
 
     isDragging = false;
+
     directionLocked = false;
+
     horizontalDrag = false;
+
 
     startX = 0;
     startY = 0;
     currentX = 0;
+
 
     restartAutoPlay();
 
@@ -445,6 +554,7 @@ carousel?.addEventListener(
         passive: true
     }
 );
+
 
 carousel?.addEventListener(
     "touchcancel",
@@ -463,6 +573,7 @@ carousel?.addEventListener(
     "mouseenter",
     stopAutoPlay
 );
+
 
 carousel?.addEventListener(
     "mouseleave",
@@ -495,141 +606,33 @@ window.addEventListener(
     "orientationchange",
     () => {
 
-        setTimeout(() => {
+        setTimeout(
+            () => {
 
-            setTrackPosition(
-                0,
-                false
-            );
+                setTrackPosition(
+                    0,
+                    false
+                );
 
-        }, 100);
+            },
+            100
+        );
 
     }
 );
 
 
 // =========================================================
-// INITIALISE CAROUSEL
+// INITIALISE MUSIC CAROUSEL
 // =========================================================
 
-showSlide(0, false);
+showSlide(
+    0,
+    false
+);
+
 
 startAutoPlay();
-
-
-// =========================================================
-// THUMBNAIL VIDEO LIGHTBOX
-// =========================================================
-
-const videoThumbnails =
-    document.querySelectorAll(".video-thumbnail");
-
-const lightbox =
-    document.getElementById("video-lightbox");
-
-const lightboxPlayer =
-    document.getElementById("video-lightbox-player");
-
-const closeButton =
-    document.querySelector(".video-lightbox-close");
-
-
-function openVideoLightbox(videoId) {
-
-    if (
-        !lightbox ||
-        !lightboxPlayer ||
-        !videoId
-    ) {
-        return;
-    }
-
-    lightboxPlayer.src =
-        `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-
-    lightbox.classList.add("active");
-
-    lightbox.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-    document.body.style.overflow =
-        "hidden";
-
-}
-
-
-function closeVideoLightbox() {
-
-    if (
-        !lightbox ||
-        !lightboxPlayer
-    ) {
-        return;
-    }
-
-    lightbox.classList.remove("active");
-
-    lightbox.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-    lightboxPlayer.src = "";
-
-    document.body.style.overflow = "";
-
-}
-
-
-videoThumbnails.forEach((thumbnail) => {
-
-    thumbnail.addEventListener(
-        "click",
-        () => {
-
-            openVideoLightbox(
-                thumbnail.dataset.videoId
-            );
-
-        }
-    );
-
-});
-
-
-closeButton?.addEventListener(
-    "click",
-    closeVideoLightbox
-);
-
-
-lightbox?.addEventListener(
-    "click",
-    (event) => {
-
-        if (event.target === lightbox) {
-            closeVideoLightbox();
-        }
-
-    }
-);
-
-
-document.addEventListener(
-    "keydown",
-    (event) => {
-
-        if (
-            event.key === "Escape" &&
-            lightbox?.classList.contains("active")
-        ) {
-            closeVideoLightbox();
-        }
-
-    }
-);
 
 
 // =========================================================
@@ -637,7 +640,9 @@ document.addEventListener(
 // =========================================================
 
 const featuredVideo =
-    document.querySelector(".featured-video-cover");
+    document.querySelector(
+        ".featured-video-cover"
+    );
 
 
 featuredVideo?.addEventListener(
@@ -647,7 +652,16 @@ featuredVideo?.addEventListener(
         const videoId =
             featuredVideo.dataset.videoId;
 
-        if (!videoId) return;
+
+        if (!videoId) {
+            return;
+        }
+
+
+        /*
+           Replace the Trembling cover image
+           with the YouTube player.
+        */
 
         featuredVideo.innerHTML = `
             <iframe
@@ -663,41 +677,88 @@ featuredVideo?.addEventListener(
 
 
 // =========================================================
-// HEADER
+// ACTIVE NAVIGATION SECTION
 // =========================================================
 
-const header =
-    document.querySelector(".site-header");
+const navigationLinks =
+    document.querySelectorAll(
+        ".site-nav a"
+    );
 
-const heroWordmark =
-    document.querySelector(".hero-logo");
+
+const navigationSections =
+    document.querySelectorAll(
+        "#music, #live, #video"
+    );
 
 
-function updateHeader() {
+function updateActiveNavigation() {
 
-    if (
-        !header ||
-        !heroWordmark
-    ) {
-        return;
-    }
+    /*
+       Use a point roughly one-third
+       down the viewport to determine
+       the current section.
+    */
 
-    const wordmarkBottom =
-        heroWordmark
-            .getBoundingClientRect()
-            .bottom;
+    const viewportMarker =
+        window.innerHeight *
+        0.35;
 
-    header.classList.toggle(
-        "scrolled",
-        wordmarkBottom <= 0
+
+    let activeSection = null;
+
+
+    navigationSections.forEach(
+        (section) => {
+
+            const bounds =
+                section.getBoundingClientRect();
+
+
+            if (
+                bounds.top <=
+                    viewportMarker &&
+                bounds.bottom >
+                    viewportMarker
+            ) {
+
+                activeSection =
+                    section.id;
+
+            }
+
+        }
+    );
+
+
+    navigationLinks.forEach(
+        (link) => {
+
+            const target =
+                link.getAttribute(
+                    "href"
+                );
+
+
+            link.classList.toggle(
+                "active",
+                target ===
+                    `#${activeSection}`
+            );
+
+        }
     );
 
 }
 
 
+// =========================================================
+// ACTIVE NAVIGATION EVENTS
+// =========================================================
+
 window.addEventListener(
     "scroll",
-    updateHeader,
+    updateActiveNavigation,
     {
         passive: true
     }
@@ -706,183 +767,8 @@ window.addEventListener(
 
 window.addEventListener(
     "resize",
-    updateHeader
+    updateActiveNavigation
 );
 
 
-updateHeader();
-
-
-// =========================================================
-// MOBILE MENU
-// =========================================================
-
-const mobileMenuButton =
-    document.querySelector(
-        ".mobile-menu-button"
-    );
-
-const mobileMenu =
-    document.querySelector(
-        ".mobile-menu"
-    );
-
-const mobileMenuLinks =
-    document.querySelectorAll(
-        ".mobile-menu a"
-    );
-
-
-function openMobileMenu() {
-
-    if (
-        !mobileMenuButton ||
-        !mobileMenu
-    ) {
-        return;
-    }
-
-    mobileMenuButton.classList.add(
-        "active"
-    );
-
-    mobileMenu.classList.add(
-        "active"
-    );
-
-    mobileMenuButton.setAttribute(
-        "aria-expanded",
-        "true"
-    );
-
-    mobileMenu.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-    document.body.classList.add(
-        "mobile-menu-open"
-    );
-
-}
-
-
-function closeMobileMenu() {
-
-    if (
-        !mobileMenuButton ||
-        !mobileMenu
-    ) {
-        return;
-    }
-
-    mobileMenuButton.classList.remove(
-        "active"
-    );
-
-    mobileMenu.classList.remove(
-        "active"
-    );
-
-    mobileMenuButton.setAttribute(
-        "aria-expanded",
-        "false"
-    );
-
-    mobileMenu.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-    document.body.classList.remove(
-        "mobile-menu-open"
-    );
-
-}
-
-
-// =========================================================
-// HAMBURGER BUTTON
-// =========================================================
-
-mobileMenuButton?.addEventListener(
-    "click",
-    (event) => {
-
-        event.stopPropagation();
-
-        if (
-            mobileMenu.classList.contains(
-                "active"
-            )
-        ) {
-
-            closeMobileMenu();
-
-        } else {
-
-            openMobileMenu();
-
-        }
-
-    }
-);
-
-
-// =========================================================
-// TAP MENU BACKGROUND TO CLOSE
-// =========================================================
-
-mobileMenu?.addEventListener(
-    "click",
-    (event) => {
-
-        if (
-            event.target.closest(
-                "a, button"
-            )
-        ) {
-            return;
-        }
-
-        closeMobileMenu();
-
-    }
-);
-
-
-// =========================================================
-// CLOSE MENU AFTER LINK
-// =========================================================
-
-mobileMenuLinks.forEach((link) => {
-
-    link.addEventListener(
-        "click",
-        closeMobileMenu
-    );
-
-});
-
-
-// =========================================================
-// ESC KEY — MOBILE MENU
-// =========================================================
-
-document.addEventListener(
-    "keydown",
-    (event) => {
-
-        if (
-            event.key === "Escape" &&
-            mobileMenu?.classList.contains(
-                "active"
-            )
-        ) {
-
-            closeMobileMenu();
-
-        }
-
-    }
-);
+updateActiveNavigation();

@@ -1,283 +1,92 @@
 /* =========================================================
-   RED CAMELLIA — HEADER + HERO
+   RED CAMELLIA — HEADER
    ========================================================= */
 
 
 /* =========================================================
-   DESKTOP / DEFAULT HEADER
+   HEADER
    ========================================================= */
 
 .site-header {
-  position: fixed;
-  z-index: 3000;
+    position: fixed;
+    z-index: 3000;
 
-  top: 0;
-  left: 0;
+    top: 0;
+    left: 0;
 
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  width: 100%;
-  height: 45px;
-  padding: 0 22px;
+    width: 100%;
+    height: 44px;
 
-  color: #f7f7f5;
-  background: transparent;
-  border-bottom: 1px solid transparent;
+    margin: 0;
+    padding: 0;
 
-  transition:
-    background 0.35s ease,
-    border-color 0.35s ease,
-    backdrop-filter 0.35s ease;
+    background: #111111;
+
+    border: 0;
+
+    pointer-events: none;
 }
 
 
 /* =========================================================
-   DESKTOP WORDMARK
-   ========================================================= */
-
-.wordmark {
-  order: 1;
-  flex: 0 0 auto;
-
-  display: block;
-
-  width: 0;
-  margin-right: 0;
-
-  overflow: hidden;
-
-  opacity: 0;
-  pointer-events: none;
-
-  transform: translateX(-24px);
-
-  transition:
-    width 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    margin-right 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.25s ease,
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.wordmark img {
-  display: block;
-
-  width: 145px;
-  max-width: none;
-  height: auto;
-}
-
-
-/* =========================================================
-   DESKTOP NAVIGATION
+   NAVIGATION
    ========================================================= */
 
 .site-nav {
-  order: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  display: flex;
-  align-items: center;
-  gap: 16px;
+    gap: 34px;
 
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 
-  white-space: nowrap;
+    white-space: nowrap;
+
+    pointer-events: auto;
 }
 
+
+/* =========================================================
+   NAVIGATION LINKS
+   ========================================================= */
+
 .site-nav a {
-  color: #f7f7f5;
+    display: block;
 
-  font-size: 11px;
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+    margin: 0;
+    padding: 0;
 
-  transform: translateY(1px);
+    color: #f7f7f5;
 
-  transition: opacity 0.2s ease;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1;
+
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+
+    transition: opacity 0.2s ease;
 }
 
 .site-nav a:hover {
-  opacity: 0.55;
+    opacity: 0.55;
 }
 
 
 /* =========================================================
-   DESKTOP SOCIAL ICONS
+   SECTION ANCHORS
    ========================================================= */
 
-.socials {
-  order: 3;
-
-  display: flex;
-  align-items: center;
-  gap: 18px;
-
-  margin-left: auto;
-}
-
-.socials a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #f7f7f5;
-
-  font-size: 19px;
-
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
-}
-
-.socials a:hover {
-  opacity: 0.6;
-  transform: translateY(-1px);
-}
-
-
-/* =========================================================
-   HEADER AFTER HERO WORDMARK PASSES
-   ========================================================= */
-
-.site-header.scrolled {
-  background: rgba(17, 17, 17, 0.82);
-  border-bottom-color: rgba(247, 247, 245, 0.08);
-
-  backdrop-filter: blur(14px) saturate(135%);
-  -webkit-backdrop-filter: blur(14px) saturate(135%);
-}
-
-.site-header.scrolled .wordmark {
-  width: 145px;
-  margin-right: 20px;
-
-  opacity: 1;
-  pointer-events: auto;
-
-  transform: translateX(0);
-}
-
-
-/* =========================================================
-   HERO — DESKTOP / TABLET
-   ========================================================= */
-
-.hero {
-  position: relative;
-
-  display: grid;
-  place-items: center;
-
-  width: 100%;
-  height: 100vh;
-  min-height: 100vh;
-
-  overflow: hidden;
-
-  padding:
-    120px
-    var(--page-margin)
-    60px;
-
-  color: #f7f7f5;
-
-  background-image:
-    linear-gradient(
-      rgba(0, 0, 0, 0.2),
-      rgba(0, 0, 0, 0.2)
-    ),
-    url("../images/photography/hero.jpg");
-
-  /*
-     Always fill the hero.
-
-     Do NOT replace this with percentages such as 115%.
-     Cover automatically adapts to the viewport aspect ratio.
-  */
-  background-size: cover;
-
-  /*
-     Keep the centre of the photograph as the focal point.
-  */
-  background-position: center center;
-
-  background-repeat: no-repeat;
-}
-
-
-/* =========================================================
-   HERO CONTENT
-   ========================================================= */
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-
-  width: 100%;
-
-  text-align: center;
-
-  transform: translateY(70px);
-}
-
-.hero-logo {
-  display: block;
-
-  width: clamp(380px, 48vw, 810px);
-  height: auto;
-
-  margin: -95px auto 44px;
-}
-
-.hero-description {
-  margin: 28px 0 36px;
-
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-
-/* =========================================================
-   LEGACY HERO HEADING
-   ========================================================= */
-
-.eyebrow {
-  margin: 0 0 24px;
-
-  color: #f7f7f5;
-
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-h1 {
-  margin: 0;
-
-  font-size: clamp(64px, 10.5vw, 176px);
-  font-weight: 900;
-  line-height: 0.88;
-  letter-spacing: -0.055em;
-  text-transform: uppercase;
-
-  white-space: nowrap;
-}
-
-
-/* =========================================================
-   MOBILE ELEMENTS — HIDDEN BY DEFAULT
-   ========================================================= */
-
-.mobile-menu-button,
-.mobile-menu,
-.mobile-spotify {
-  display: none;
+#music,
+#live,
+#video {
+    scroll-margin-top: 44px;
 }
 
 
@@ -285,628 +94,110 @@ h1 {
    MOBILE
    ========================================================= */
 
-@media (max-width: 700px) {
-
-  /* -------------------------------------------------------
-     HEADER
-     ------------------------------------------------------- */
-
-  .site-header {
-    z-index: 3000;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    height: 64px;
-
-    padding:
-      max(10px, env(safe-area-inset-top))
-      18px
-      8px;
-
-    background: transparent;
-    border-bottom-color: transparent;
-
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-
-
-  /* Hide desktop navigation */
-
-  .site-nav,
-  .socials {
-    display: none;
-  }
-
-
-  /* -------------------------------------------------------
-     MOBILE HEADER WORDMARK
-     ------------------------------------------------------- */
-
-  .wordmark {
-    position: absolute;
-
-    left: 50%;
-
-    display: block;
-
-    width: 145px;
-    margin: 0;
-
-    overflow: visible;
-
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-
-    transform:
-      translateX(-50%)
-      translateY(-5px);
-
-    transition:
-      opacity 0.3s ease,
-      visibility 0.3s ease,
-      transform 0.3s ease;
-  }
-
-  .wordmark img {
-    display: block;
-
-    width: 145px;
-    height: auto;
-  }
-
-  .site-header.scrolled .wordmark {
-    width: 145px;
-    margin: 0;
-
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-
-    transform:
-      translateX(-50%)
-      translateY(0);
-  }
-
-
-  /* -------------------------------------------------------
-     SCROLLED MOBILE HEADER
-     ------------------------------------------------------- */
-
-  .site-header.scrolled {
-    background: rgba(10, 10, 10, 0.88);
-    border-bottom-color: rgba(247, 247, 245, 0.07);
-
-    backdrop-filter: blur(14px) saturate(130%);
-    -webkit-backdrop-filter: blur(14px) saturate(130%);
-  }
-
-
-  /* -------------------------------------------------------
-     HAMBURGER + SPOTIFY
-     ------------------------------------------------------- */
-
-  .mobile-menu-button,
-  .mobile-spotify {
-    position: absolute;
-    z-index: 3001;
-
-    top: 50%;
-
-    width: 34px;
-    height: 34px;
-
-    padding: 0;
-    border: 0;
-
-    color: #f7f7f5;
-    background: transparent;
-
-    transform: translateY(-50%);
-  }
-
-
-  /* Hamburger */
-
-  .mobile-menu-button {
-    left: 18px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    gap: 5px;
-
-    cursor: pointer;
-  }
-
-  .mobile-menu-button span {
-    display: block;
-
-    width: 25px;
-    height: 1px;
-
-    margin: 0;
-
-    border-radius: 999px;
-
-    background: currentColor;
-
-    transform-origin: center;
-
-    transition:
-      opacity 0.2s ease,
-      transform 0.3s ease;
-  }
-
-  .mobile-menu-button.active span:nth-child(1) {
-    width: 24px;
-
-    transform:
-      translateY(6px)
-      rotate(45deg);
-  }
-
-  .mobile-menu-button.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .mobile-menu-button.active span:nth-child(3) {
-    width: 24px;
-
-    transform:
-      translateY(-6px)
-      rotate(-45deg);
-  }
-
-
-  /* Spotify */
-
-  .mobile-spotify {
-    right: 18px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 23px;
-
-    transition:
-      opacity 0.2s ease,
-      transform 0.2s ease;
-  }
-
-  .mobile-spotify:active {
-    opacity: 0.65;
-
-    transform:
-      translateY(-50%)
-      scale(0.94);
-  }
-
-
-  /* -------------------------------------------------------
-     MOBILE HERO
-     ------------------------------------------------------- */
-
-  .hero {
-    /*
-       Dynamic viewport height handles Safari's changing
-       address/navigation bars more reliably than plain 100vh.
-    */
-
-    width: 100%;
-
-    height: 100dvh;
-    min-height: 100dvh;
-
-    padding:
-      calc(70px + env(safe-area-inset-top))
-      18px
-      calc(45px + env(safe-area-inset-bottom));
-
-    background-size: cover;
-
-    /*
-       Slightly higher focal point on portrait screens.
-    */
-    background-position: center 48%;
-  }
-
-  .hero-content {
-    transform: translateY(25px);
-  }
-
-  .hero-logo {
-    width: min(88vw, 340px);
-    max-width: 100%;
-
-    height: auto;
-
-    margin: 0 auto 28px;
-  }
-
-  .hero .button {
-    padding: 13px 26px;
-
-    font-size: 10px;
-    letter-spacing: 0.18em;
-  }
-
-  h1 {
-    font-size: clamp(52px, 17vw, 92px);
-
-    white-space: normal;
-  }
-
-
-  /* -------------------------------------------------------
-     FULL-SCREEN MOBILE MENU
-     ------------------------------------------------------- */
-
-  .mobile-menu {
-    position: fixed;
-    z-index: 2000;
-
-    inset: 0;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-
-    padding:
-      calc(20px + env(safe-area-inset-top))
-      24px
-      calc(32px + env(safe-area-inset-bottom));
-
-    color: #f7f7f5;
-    background: #111111;
-
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-
-    transform: translateY(-10px);
-
-    transition:
-      opacity 0.3s ease,
-      visibility 0.3s ease,
-      transform 0.35s ease;
-  }
-
-  .mobile-menu.active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-
-    transform: translateY(0);
-  }
-
-  body.mobile-menu-open {
-    overflow: hidden;
-  }
-
-
-  /* -------------------------------------------------------
-     HEADER WHILE MENU IS OPEN
-     ------------------------------------------------------- */
-
-  body.mobile-menu-open .site-header,
-  body.mobile-menu-open .site-header.scrolled {
-    background: transparent;
-    border-bottom-color: transparent;
-
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-
-  body.mobile-menu-open .mobile-spotify {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  body.mobile-menu-open .site-header .wordmark,
-  body.mobile-menu-open .site-header.scrolled .wordmark {
-    position: absolute;
-
-    left: 50%;
-
-    width: 145px;
-    margin: 0;
-
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-
-    transform: translateX(-50%);
-  }
-
-  body.mobile-menu-open .site-header .wordmark img,
-  body.mobile-menu-open .site-header.scrolled .wordmark img {
-    width: 145px;
-    height: auto;
-  }
-
-
-  /* -------------------------------------------------------
-     MOBILE MENU NAVIGATION
-     ------------------------------------------------------- */
-
-  .mobile-menu-nav {
-    position: relative;
-    top: 45px;
-
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    width: 100%;
-
-    margin: 0;
-    padding: 0;
-
-    text-align: center;
-  }
-
-  .mobile-menu-nav a {
-    padding: 14px 0;
-
-    font-size: 28px;
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: 0.10em;
-    text-transform: uppercase;
-
-    opacity: 0;
-
-    transform: translateY(14px);
-
-    transition:
-      opacity 0.35s ease,
-      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .mobile-menu.active .mobile-menu-nav a {
-    opacity: 1;
-
-    transform: translateY(0);
-  }
-
-  .mobile-menu.active .mobile-menu-nav a:nth-child(1) {
-    transition-delay: 0.06s;
-  }
-
-  .mobile-menu.active .mobile-menu-nav a:nth-child(2) {
-    transition-delay: 0.11s;
-  }
-
-  .mobile-menu.active .mobile-menu-nav a:nth-child(3) {
-    transition-delay: 0.16s;
-  }
-
-  .mobile-menu.active .mobile-menu-nav a:nth-child(4) {
-    transition-delay: 0.21s;
-  }
-
-
-  /* -------------------------------------------------------
-     MENU BOTTOM
-     ------------------------------------------------------- */
-
-  .mobile-menu-bottom {
-    position: relative;
-    top: 45px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    width: 100%;
-    max-width: 240px;
-
-    margin-top: 34px;
-    margin-bottom: 60px;
-  }
-
-
-  /* -------------------------------------------------------
-     FLOWER DIVIDER
-     ------------------------------------------------------- */
-
-  .mobile-menu-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 170px;
-
-    margin-bottom: 26px;
-
-    opacity: 0;
-
-    transform: translateY(12px);
-
-    transition:
-      opacity 0.35s ease,
-      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .mobile-menu.active .mobile-menu-divider {
-    opacity: 1;
-
-    transform: translateY(0);
-
-    transition-delay: 0.23s;
-  }
-
-  .mobile-menu-divider span {
-    flex: 1;
-
-    height: 1px;
-
-    background: rgba(247, 247, 245, 0.15);
-  }
-
-  .mobile-menu-divider img {
-    width: 27px;
-
-    margin: 0 15px;
-
-    opacity: 0.6;
-  }
-
-  .mobile-menu-flower {
-    display: block;
-
-    height: auto;
-  }
-
-
-  /* -------------------------------------------------------
-     MENU SOCIAL ICONS
-     ------------------------------------------------------- */
-
-  .mobile-menu-social-icons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    gap: 18px;
-  }
-
-  .mobile-menu-social-icons a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 42px;
-    height: 42px;
-
-    color: #f7f7f5;
-
-    font-size: 27px;
-
-    opacity: 0;
-
-    transform: translateY(14px);
-
-    transition:
-      opacity 0.35s ease,
-      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .mobile-menu.active .mobile-menu-social-icons a {
-    opacity: 0.94;
-
-    transform: translateY(0);
-  }
-
-  .mobile-menu.active .mobile-menu-social-icons a:nth-child(1) {
-    transition-delay: 0.27s;
-  }
-
-  .mobile-menu.active .mobile-menu-social-icons a:nth-child(2) {
-    transition-delay: 0.32s;
-  }
-
-  .mobile-menu.active .mobile-menu-social-icons a:nth-child(3) {
-    transition-delay: 0.37s;
-  }
-
-  .mobile-menu.active .mobile-menu-social-icons a:nth-child(4) {
-    transition-delay: 0.42s;
-  }
-
-  .mobile-menu.active .mobile-menu-social-icons a:nth-child(5) {
-    transition-delay: 0.47s;
-  }
-
-  .mobile-menu-social-icons a:last-child {
-    font-size: 26px;
-  }
+@media screen and (max-width: 700px) {
+
+    .site-header {
+        height: calc(
+            58px + env(safe-area-inset-top)
+        );
+
+        padding-top: env(safe-area-inset-top);
+    }
+
+    .site-nav {
+        gap: 24px;
+    }
+
+    .site-nav a {
+        font-size: 18.7px;
+        font-weight: 800;
+        letter-spacing: 0.07em;
+    }
+
+    #music,
+    #live,
+    #video {
+        scroll-margin-top:
+            calc(
+                58px + env(safe-area-inset-top)
+            );
+    }
 
 }
 
 
 /* =========================================================
-   IPHONE / SMALL DEVICE LANDSCAPE
+   SMALL MOBILE
    ========================================================= */
 
-@media (orientation: landscape) and (max-height: 500px) {
+@media screen and (max-width: 380px) {
 
-  html,
-  body {
+    .site-nav {
+        gap: 18px;
+    }
+
+    .site-nav a {
+        font-size: 17px;
+        letter-spacing: 0.05em;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE LANDSCAPE
+   ========================================================= */
+
+@media screen and (orientation: landscape) and (max-height: 500px) {
+
+    .site-header {
+        height: 42px;
+        padding-top: 0;
+    }
+
+    .site-nav {
+        gap: 28px;
+    }
+
+    .site-nav a {
+        font-size: 15px;
+        letter-spacing: 0.07em;
+    }
+
+    #music,
+    #live,
+    #video {
+        scroll-margin-top: 42px;
+    }
+
+}
+
+/* =========================================================
+   ACTIVE NAVIGATION
+   ========================================================= */
+
+.site-nav a {
+    position: relative;
+}
+
+.site-nav a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -6px;
+
+    width: 0;
+    height: 1px;
+
+    background: #f7f7f5;
+
+    transform: translateX(-50%);
+
+    transition: width 0.25s ease;
+}
+
+.site-nav a.active::after {
     width: 100%;
-
-    overflow-x: hidden;
-
-    background: #111111;
-  }
-
-  /*
-     Keep desktop/tablet navigation in landscape.
-     Protect controls from the notch / safe areas.
-  */
-
-  .site-header {
-    padding-left:
-      max(22px, calc(14px + env(safe-area-inset-left)));
-
-    padding-right:
-      max(22px, calc(14px + env(safe-area-inset-right)));
-  }
-
-  .site-nav {
-    display: flex;
-  }
-
-  .socials {
-    display: flex;
-  }
-
-  .mobile-menu-button,
-  .mobile-spotify,
-  .mobile-menu {
-    display: none;
-  }
-
-
-  /* Landscape hero */
-
-  .hero {
-    width: 100%;
-
-    height: 100dvh;
-    min-height: 100dvh;
-
-    padding-top: 54px;
-    padding-bottom: 18px;
-
-    background-size: cover;
-    background-position: center center;
-  }
-
-  .hero-content {
-    transform: translateY(8px);
-  }
-
-  .hero-logo {
-    width: min(50vw, 440px);
-
-    margin: 0 auto 16px;
-  }
-
-  .hero .button {
-    padding: 10px 22px;
-
-    font-size: 9px;
-  }
-
 }
