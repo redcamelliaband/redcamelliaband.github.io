@@ -83,23 +83,16 @@
 
 /* =========================================================
    VIDEO CONTAINER — DESKTOP
+   20% LARGER
    ========================================================= */
 
 .video-container {
-    /*
-       Responsive sizing:
-       820px minimum
-       62vw responsive
-       1250px maximum
-    */
-
-    width: clamp(820px, 62vw, 1250px);
+    width: clamp(828px, 62.6vw, 1260px);
 
     max-width: 100%;
 
     margin: 0 auto;
 }
-
 
 /* =========================================================
    FEATURED VIDEO
